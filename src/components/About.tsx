@@ -1,4 +1,4 @@
-const profileImage = "/profile.svg";
+const profileImage = "/hero.jpg";
 import React from 'react';
 import { motion } from 'motion/react';
 import { GraduationCap, Briefcase, Code2, Cpu } from 'lucide-react';
