@@ -1,9 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+
+    <title>Alfredo Navarrete Montes — HPC, Distributed Systems & Applied NLP</title>
+    <meta
+      name="description"
+      content="Software engineer working on HPC benchmarking (HPL, HPCG on Slurm/MPI), distributed data pipelines and applied NLP. Selected work with the measured results attached."
+    />
+    <meta name="author" content="Alfredo Navarrete Montes" />
+    <meta name="theme-color" content="#08090b" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Alfredo Navarrete Montes — HPC, Distributed Systems & Applied NLP"
+    />
+    <meta
+      property="og:description"
+      content="HPL and HPCG benchmark campaigns on UNM CARC clusters, a distributed crawling pipeline, and an LLM early-detection pipeline that placed 6th at MentalRiskES 2026."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!--
+      Applies the stored theme before first paint so a light-theme visitor never
+      sees a dark flash on load.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          /* localStorage unavailable — the dark default in the markup stands. */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
