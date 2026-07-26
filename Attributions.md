@@ -1,3 +1,8 @@
-Este archivo de Figma Make incluye componentes de [shadcn/ui](https://ui.shadcn.com/) utilizados bajo [licencia MIT](https://github.com/shadcn-ui/ui/blob/main/LICENSE.md).
+# Attributions
 
-Este archivo de Figma Make incluye fotos de [Unsplash](https://unsplash.com) usadas bajo [licencia](https://unsplash.com/license).
+- [lucide-react](https://lucide.dev) — icons, ISC License.
+- [motion](https://motion.dev) — animation, MIT License.
+- [Tailwind CSS](https://tailwindcss.com) — MIT License.
+
+All imagery on the site is the author's own. Earlier revisions of this project used shadcn/ui
+components and Unsplash photography; neither remains in the source.
