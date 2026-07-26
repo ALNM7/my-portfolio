@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, FileText, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { headlineStats, profile } from '../data/profile';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -72,11 +72,13 @@ export function Hero() {
                 <ArrowUpRight className="size-4" />
               </a>
               <a
-                href={`mailto:${profile.email}`}
+                href={profile.cv}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-line bg-surface px-4 py-2.5 text-[0.875rem] font-medium text-fg transition-colors hover:border-line-strong"
               >
-                <Mail className="size-4" />
-                Get in touch
+                <FileText className="size-4" />
+                Download CV
               </a>
 
               <div className="flex items-center gap-1 sm:ml-2">
@@ -97,6 +99,13 @@ export function Hero() {
                   className="rounded-md p-2.5 text-fg-faint transition-colors hover:text-fg"
                 >
                   <Linkedin className="size-[1.125rem]" />
+                </a>
+                <a
+                  href={`mailto:${profile.email}`}
+                  aria-label="Email"
+                  className="rounded-md p-2.5 text-fg-faint transition-colors hover:text-fg"
+                >
+                  <Mail className="size-[1.125rem]" />
                 </a>
               </div>
             </motion.div>

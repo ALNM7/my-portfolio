@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { Section, Reveal } from './primitives/Section';
 import { profile } from '../data/profile';
 
@@ -57,13 +57,24 @@ export function Contact() {
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        <a
-          href={`mailto:${profile.email}?subject=${encodeURIComponent('Hello Alfredo')}`}
-          className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-[0.9375rem] font-medium text-accent-fg transition-opacity hover:opacity-90"
-        >
-          <Mail className="size-4" />
-          Write to me
-        </a>
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href={`mailto:${profile.email}?subject=${encodeURIComponent('Hello Alfredo')}`}
+            className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-[0.9375rem] font-medium text-accent-fg transition-opacity hover:opacity-90"
+          >
+            <Mail className="size-4" />
+            Write to me
+          </a>
+          <a
+            href={profile.cv}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-line bg-surface px-5 py-3 text-[0.9375rem] font-medium text-fg transition-colors hover:border-line-strong"
+          >
+            <FileText className="size-4" />
+            Download CV
+          </a>
+        </div>
         <p className="mt-4 max-w-xl text-[0.8125rem] leading-relaxed text-fg-faint">
           Email is the fastest way to reach me — I read it daily and usually reply within a day.
         </p>

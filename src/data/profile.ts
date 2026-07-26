@@ -10,6 +10,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/alfredo-navarrete-montes-2997962b7/',
   linkedinHandle: 'alfredo-navarrete-montes',
   photo: '/hero.jpg',
+  cv: '/CV_Alfredo_Navarrete.pdf',
 
   intro:
     'I work where measurement meets systems: benchmarking MPI workloads on HPC clusters, ' +
