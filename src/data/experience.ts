@@ -11,9 +11,9 @@ export type Role = {
 export const roles: Role[] = [
   {
     title: 'Research Assistant',
-    org: 'Health Technologies Laboratory — BUAP',
+    org: 'Health Technologies Laboratory, BUAP',
     location: 'Puebla, Mexico',
-    period: 'Jan 2026 — Present',
+    period: 'Jan 2026 - Present',
     current: true,
     points: [
       'Participated in MentalRiskES 2026, the IberLEF shared task on early detection of mental-health ' +
@@ -28,9 +28,9 @@ export const roles: Role[] = [
   },
   {
     title: 'Research Assistant',
-    org: 'University of New Mexico — Anderson School of Management',
+    org: 'University of New Mexico, Anderson School of Management',
     location: 'Albuquerque, NM, USA',
-    period: 'Aug — Dec 2025',
+    period: 'Aug - Dec 2025',
     points: [
       'Designed a distributed Python scraping pipeline that collected 150k+ Kickstarter campaign records, ' +
         'enabling large-scale analysis of customer behaviour.',
@@ -45,9 +45,9 @@ export const roles: Role[] = [
   },
   {
     title: 'HPC benchmarking campaigns',
-    org: 'Center for Advanced Research Computing — University of New Mexico',
+    org: 'Center for Advanced Research Computing, University of New Mexico',
     location: 'Albuquerque, NM, USA',
-    period: 'Aug — Dec 2025',
+    period: 'Aug - Dec 2025',
     points: [
       'Benchmarked HPL on the Hopper cluster (32 cores/node, InfiniBand, GCC), tuning N, NB and the P×Q ' +
         'process grid through automated Slurm parameter sweeps.',
