@@ -1,7 +1,7 @@
 export type Bar = {
   label: string;
   value: number;
-  /** Rendered de-emphasised — used for baselines and for runs I did not own. */
+  /** Rendered de-emphasised, for baselines and for runs I did not own. */
   muted?: boolean;
   /** Highlighted as the headline result of the chart. */
   peak?: boolean;

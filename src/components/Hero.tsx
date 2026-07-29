@@ -129,7 +129,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Headline metrics — the numbers a technical reader scans for first. */}
+        {/* Headline metrics: the numbers a technical reader scans for first. */}
         <motion.dl
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
