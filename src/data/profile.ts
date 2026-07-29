@@ -45,7 +45,7 @@ export const profile = {
 
   languages: [
     { name: 'Spanish', level: 'Native' },
-    { name: 'English', level: 'Advanced. TOEFL ITP 560 · Duolingo English Test 120' },
+    { name: 'English', level: 'Advanced — TOEFL ITP 560 · Duolingo English Test 120' },
   ],
 
   availability:
@@ -65,7 +65,7 @@ export const headlineStats = [
     value: '6th',
     unit: 'of the field',
     label: 'MentalRiskES 2026',
-    detail: 'IberLEF Task 1, best early-detection score (R10)',
+    detail: 'IberLEF Task 1 — best early-detection score (R10)',
   },
   {
     value: '5.3×',

@@ -74,7 +74,7 @@ export function BarChart({ spec }: { spec: BarChartSpec }) {
       {/* Accessible equivalent of the figure above. */}
       <table className="sr-only">
         <caption>
-          {spec.title} ({spec.unit})
+          {spec.title} — {spec.unit}
         </caption>
         <thead>
           <tr>

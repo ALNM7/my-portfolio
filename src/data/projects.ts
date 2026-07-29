@@ -8,11 +8,11 @@ import type { Project, SideProject } from './types';
 export const projects: Project[] = [
   {
     id: 'mentalriskes',
-    title: 'MentalRiskES 2026: LLM early-detection pipeline',
+    title: 'MentalRiskES 2026 — LLM early-detection pipeline',
     tagline:
       'Round-based LLM pipeline for the IberLEF shared task on early detection of mental-health risk in Spanish.',
     org: 'Health Technologies Laboratory, BUAP',
-    period: 'Jan 2026 - Present',
+    period: 'Jan 2026 — Present',
     repo: 'https://github.com/ALNM7/mentalriskes-2026-llm-pipeline',
     contribution:
       'Built and operated the competition pipeline for the BUAP team; co-authored the resulting paper.',
@@ -26,7 +26,7 @@ export const projects: Project[] = [
       'MentalRiskES is an IberLEF shared task on spotting mental-health risk in Spanish conversational ' +
       'text as early as possible. It runs as a live, round-based simulation: the organisers\' server ' +
       'releases one patient message at a time, and a system has to answer before the next round is ' +
-      'released. I built the pipeline the BUAP team submitted with: the orchestration, the server ' +
+      'released. I built the pipeline the BUAP team submitted with — the orchestration, the server ' +
       'client, the energy accounting and the failure handling.',
     sections: [
       {
@@ -36,10 +36,10 @@ export const projects: Project[] = [
             'round only closes after six successful POSTs.',
         ],
         bullets: [
-          'Task 1: predict, for each round, how the patient would answer three standardized clinical ' +
+          'Task 1 — predict, for each round, how the patient would answer three standardized clinical ' +
             'questionnaires: GAD-7 (anxiety, 7 items), PHQ-9 (depression, 9 items) and CompACT-10 ' +
             '(acceptance and values, 10 items). Scoring rewards identifying risk both accurately and early.',
-          'Task 2: given the patient\'s last message and three candidate therapist responses, choose the ' +
+          'Task 2 — given the patient\'s last message and three candidate therapist responses, choose the ' +
             'most clinically appropriate one.',
         ],
       },
@@ -48,7 +48,7 @@ export const projects: Project[] = [
         body: [
           'A questionnaire prediction is a fixed-length integer array, not prose. Every LLM call goes ' +
             'through the OpenAI API\'s function-calling interface, so the model returns schema-validated ' +
-            'structured data: an array of the right length for Task 1, one of exactly three labels for ' +
+            'structured data — an array of the right length for Task 1, one of exactly three labels for ' +
             'Task 2. That removes an entire class of submission failures: there is no free-text response ' +
             'to regex, and a malformed answer is caught at the boundary instead of at the scoring server.',
           'Prompts are assembled from the patient\'s accumulated message history plus the official ' +
@@ -62,8 +62,8 @@ export const projects: Project[] = [
           'The competition advances whether or not your system answered, so an unhandled API error costs a ' +
             'round permanently. Each of the three runs per round can be configured with a different model, ' +
             'per-patient history is persisted to disk between rounds, and if an OpenAI call still fails ' +
-            'after retries the pipeline falls back to a conservative default (all-zero questionnaire ' +
-            'answers, first response option), so a round is degraded rather than lost.',
+            'after retries the pipeline falls back to a conservative default — all-zero questionnaire ' +
+            'answers, first response option — so a round is degraded rather than lost.',
         ],
       },
       {
@@ -71,8 +71,8 @@ export const projects: Project[] = [
         body: [
           'The task requires reporting energy consumption alongside predictions. Every prediction run is ' +
             'wrapped in a codecarbon EmissionsTracker and the measurement is submitted with the round.',
-          'That constraint drove the model choice. Running small models (gpt-4o-mini, then gpt-4.1-nano ' +
-            'and gpt-5-nano) rather than large ones produced the lowest energy consumption of any ' +
+          'That constraint drove the model choice. Running small models — gpt-4o-mini, then gpt-4.1-nano ' +
+            'and gpt-5-nano — rather than large ones produced the lowest energy consumption of any ' +
             'participating team, and it did not cost us proportional early-detection accuracy: the same ' +
             'submission recorded the best R10 score in the field.',
         ],
@@ -90,11 +90,11 @@ export const projects: Project[] = [
     ],
     tables: [
       {
-        caption: 'Official results: MentalRiskES 2026, Task 1',
+        caption: 'Official results — MentalRiskES 2026, Task 1',
         head: ['Result', 'Value'],
         rows: [
           ['Overall placement', '6th'],
-          ['Early detection (R10)', 'Best of all participating teams, MAE 0.889'],
+          ['Early detection (R10)', 'Best of all participating teams — MAE 0.889'],
           ['Energy consumption', 'Lowest of all participating teams'],
           ['Publication', 'Accepted at CEUR-WS (indexed in Scopus and DBLP)'],
         ],
@@ -108,11 +108,11 @@ export const projects: Project[] = [
     tagline:
       'Automated Slurm parameter sweeps over N, NB and P×Q, and what the process-grid shape alone is worth.',
     org: 'Center for Advanced Research Computing, University of New Mexico',
-    period: 'Aug - Dec 2025',
+    period: 'Aug — Dec 2025',
     repo: 'https://github.com/ALNM7/hpl-benchmark-scaling-unm-carc',
     contribution:
-      'Three-person project across three CARC clusters. The Hopper cluster (this repository, its sweeps ' +
-      'and its results) was my individual contribution.',
+      'Three-person project across three CARC clusters. The Hopper cluster — this repository, its sweeps ' +
+      'and its results — was my individual contribution.',
     stack: ['Slurm', 'MPI', 'HPL', 'Python', 'Bash', 'GCC', 'InfiniBand'],
     metrics: [
       { value: '2.95', unit: 'TFLOP/s', label: 'Peak, 128 ranks' },
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     summary:
       'HPL solves a large dense system Ax = b by LU decomposition with partial pivoting across MPI ranks, ' +
       'and it is the benchmark behind the TOP500 ranking. Its reported GFLOP/s is famously sensitive to ' +
-      'three knobs: matrix size N, block size NB, and the shape of the P×Q process grid. This project ' +
+      'three knobs — matrix size N, block size NB, and the shape of the P×Q process grid. This project ' +
       'measures how sensitive, on real hardware, by sweeping all three under Slurm and parsing every run ' +
       'into one dataset.',
     sections: [
@@ -135,7 +135,7 @@ export const projects: Project[] = [
       {
         heading: 'Method',
         body: [
-          'N was set to roughly 80% of available RAM for a given rank count, as large as possible without ' +
+          'N was set to roughly 80% of available RAM for a given rank count — as large as possible without ' +
             'the run dying on memory. NB was swept over 64, 96, 128, 160, 192, 224, 256 and 288. Grid ' +
             'shapes covered every valid P×Q factorisation of the rank count, from tall (2×16) through ' +
             'near-square (8×4) to fully wide (32×1), which isolates communication-shape cost from ' +
@@ -153,7 +153,7 @@ export const projects: Project[] = [
           'Block size has a clear optimum and a cliff. Medium blocks balance computation against ' +
             'communication; past NB=192 performance collapses to under a third of peak.',
           'Process-grid shape turned out to be the single largest effect measured. At a fixed N=60,992, ' +
-            'NB=128 and 32 ranks, on the same hardware, with the same problem and the same rank count, a 2×16 grid ' +
+            'NB=128 and 32 ranks — the same hardware, the same problem, the same rank count — a 2×16 grid ' +
             'reaches ~209 GFLOP/s and an 8×4 grid reaches ~1,106 GFLOP/s. Nothing changed except how the ' +
             'ranks were arranged.',
           'Weak scaling behaves as Gustafson\'s Law predicts. Holding 8×8 and NB=160 while growing N from ' +
@@ -181,7 +181,7 @@ export const projects: Project[] = [
       },
       {
         kind: 'bar',
-        title: 'Process-grid shape: same problem, same ranks',
+        title: 'Process-grid shape — same problem, same ranks',
         caption: 'N = 60,992 · NB = 128 · 32 ranks',
         unit: 'GFLOP/s',
         bars: [
@@ -201,7 +201,7 @@ export const projects: Project[] = [
           { label: '128 ranks', value: 2950, peak: true, note: 'N = 121,984' },
         ],
         footnote:
-          'Higher absolute performance needs more ranks and a bigger problem, but only with the right NB ' +
+          'Higher absolute performance needs more ranks and a bigger problem — but only with the right NB ' +
           'and grid shape, as the two charts above show.',
       },
     ],
@@ -222,15 +222,15 @@ export const projects: Project[] = [
 
   {
     id: 'hpcg',
-    title: 'HPCG scaling: CPU campaign in a GPU-vs-CPU study',
+    title: 'HPCG scaling — CPU campaign in a GPU-vs-CPU study',
     tagline:
       'Where multi-node CPU scaling stops paying for itself on a memory-bound sparse solver.',
     org: 'Easley cluster, UNM CARC',
-    period: 'Aug - Dec 2025',
+    period: 'Aug — Dec 2025',
     repo: 'https://github.com/ALNM7/hpcg-gpu-cpu-scaling-carc',
     contribution:
-      'Three-person study. I designed and ran the CPU-only experiments (problem-size sweep, multi-node ' +
-      'scaling, strong-scaling and efficiency analysis) and produced the CPU dataset. The GPU runs were ' +
+      'Three-person study. I designed and ran the CPU-only experiments — problem-size sweep, multi-node ' +
+      'scaling, strong-scaling and efficiency analysis — and produced the CPU dataset. The GPU runs were ' +
       'my teammate Yaw Danso\'s; they appear here because the comparison is the point of the study.',
     stack: ['MPI (OpenMPI)', 'Slurm', 'HPCG 3.1', 'Apptainer', 'Python', 'Intel Xeon Gold'],
     metrics: [
@@ -255,7 +255,7 @@ export const projects: Project[] = [
         heading: 'CPU findings',
         body: [
           'Single-core throughput peaks near a 96³ problem at 1.90 GFLOP/s and falls off as the matrix ' +
-            'grows, a cache and memory-bandwidth ceiling visible well before any parallelism is involved.',
+            'grows — a cache and memory-bandwidth ceiling, visible well before any parallelism is involved.',
           'Scaling out, the best CPU configuration reached 101.6 GFLOP/s on 128 cores across 4 nodes, a ' +
             '55.95× speedup. But parallel efficiency at that point is 58%: scaling holds up well inside a ' +
             'single node and degrades once inter-node communication, NUMA effects and shared memory ' +
@@ -267,7 +267,7 @@ export const projects: Project[] = [
         body: [
           'Placed next to the GPU runs, the CPU curve makes the architectural argument concrete. A single ' +
             'L40S beats a single CPU core by roughly 88×, and three GPUs beat all 128 CPU cores by about ' +
-            '4.5×, while holding 95.7% strong-scaling efficiency against the CPU side\'s 58%. For a ' +
+            '4.5× — while holding 95.7% strong-scaling efficiency against the CPU side\'s 58%. For a ' +
             'memory-bound sparse kernel, aggregate memory bandwidth on one node beats spreading the same ' +
             'work across four.',
         ],
@@ -287,7 +287,7 @@ export const projects: Project[] = [
       {
         kind: 'bar',
         title: 'Throughput by configuration',
-        caption: 'Fixed 128³ problem: CPU runs mine, GPU runs my teammate\'s',
+        caption: 'Fixed 128³ problem — CPU runs mine, GPU runs my teammate\'s',
         unit: 'GFLOP/s',
         bars: [
           { label: '1 CPU core', value: 1.82 },
@@ -321,7 +321,7 @@ export const projects: Project[] = [
         head: ['Measurement', 'Value'],
         rows: [
           ['Best single-core throughput', '1.90 GFLOP/s near 96³'],
-          ['Best multi-node throughput', '101.6 GFLOP/s on 128 cores, 4 nodes'],
+          ['Best multi-node throughput', '101.6 GFLOP/s — 128 cores, 4 nodes'],
           ['Maximum speedup', '55.95×'],
           ['Parallel efficiency at 128 cores', '58%'],
         ],
@@ -335,7 +335,7 @@ export const projects: Project[] = [
     tagline:
       'A crawler designed around being blocked: static sharding, proxy rotation and per-row checkpoints.',
     org: 'Anderson School of Management, University of New Mexico',
-    period: 'Aug - Dec 2025',
+    period: 'Aug — Dec 2025',
     repo: 'https://github.com/ALNM7/distributed-crawling-architecture',
     stack: [
       'Python',
@@ -352,8 +352,8 @@ export const projects: Project[] = [
     ],
     summary:
       'Built to support a large-scale analysis of Kickstarter campaign behaviour at UNM\'s Anderson School ' +
-      'of Management. Every campaign requires visiting six JS-rendered sub-pages (story, creator, ' +
-      'rewards, updates, community, FAQs and comments) behind Cloudflare. The interesting engineering ' +
+      'of Management. Every campaign requires visiting six JS-rendered sub-pages — story, creator, ' +
+      'rewards, updates, community, FAQs and comments — behind Cloudflare. The interesting engineering ' +
       'here is not extraction; it is staying alive across weeks of a site that actively does not want to ' +
       'be crawled.',
     sections: [
@@ -376,7 +376,7 @@ export const projects: Project[] = [
             'off Chrome\'s DevTools performance log rather than inferred from page content.',
           'All four are checked after every navigation, and none is treated as fatal. The response is to ' +
             'rotate to the next proxy, rebuild the browser profile and retry. On top of that each worker ' +
-            'rests for a configured interval after every batch, a self-imposed limit independent of ' +
+            'rests for a configured interval after every batch — a self-imposed limit independent of ' +
             'whatever the site enforces.',
         ],
       },
@@ -384,8 +384,8 @@ export const projects: Project[] = [
         heading: 'Checkpointing over batching',
         body: [
           'Because one campaign means six page loads and can fail halfway through, results are written ' +
-            'after every successful row rather than at the end of a shard, using atomic writes (temp file, ' +
-            'then replace). It costs I/O and buys the property that matters at this scale: a killed worker ' +
+            'after every successful row rather than at the end of a shard, using atomic writes — temp file, ' +
+            'then replace. It costs I/O and buys the property that matters at this scale: a killed worker ' +
             'resumes having lost at most the row it was on.',
         ],
       },
@@ -395,9 +395,8 @@ export const projects: Project[] = [
           'The repository ships the pipeline and architecture, not the dataset. The collected data belongs ' +
             'to the research effort and republishing scraped Kickstarter data may conflict with the site\'s ' +
             'terms, so only a two-row illustrative input example is included.',
-          'The crawler reads only publicly visible project pages, with no login, payment or non-public ' +
-            'content, and backs off rather than hammering a page that is already signalling it is ' +
-            'throttled.',
+          'The crawler reads only publicly visible project pages — no login, payment or non-public content ' +
+            '— and backs off rather than hammering a page that is already signalling it is throttled.',
         ],
       },
     ],
@@ -411,7 +410,7 @@ export const projects: Project[] = [
     id: 'emotions',
     title: 'Spanish emotion classification with RoBERTuito',
     tagline:
-      'Fine-tuning a Spanish-only transformer on a 1,860-example survey corpus, and reporting what that ' +
+      'Fine-tuning a Spanish-only transformer on a 1,860-example survey corpus — and reporting what that ' +
       'does and does not prove.',
     org: 'NLP research project, BUAP',
     period: '2025',
@@ -423,7 +422,7 @@ export const projects: Project[] = [
       { value: '1,860', label: 'Labelled examples' },
     ],
     summary:
-      'Six-way emotion classification (happiness, sadness, disgust, anger, fear, surprise) over short ' +
+      'Six-way emotion classification — happiness, sadness, disgust, anger, fear, surprise — over short ' +
       'autobiographical texts in Spanish. Most emotion-classification tooling targets English and ' +
       'transfers poorly to Spanish, where syntax, informal register and culturally specific expression all ' +
       'differ. The base model is RoBERTuito, a RoBERTa pretrained from scratch on roughly 500 million ' +
@@ -434,7 +433,7 @@ export const projects: Project[] = [
         heading: 'The corpus',
         body: [
           'A custom survey rather than a public benchmark: 341 respondents, mostly computer-science ' +
-            'students at BUAP, each answering 12 open-ended prompts, two per emotion. The design makes the ' +
+            'students at BUAP, each answering 12 open-ended prompts — two per emotion. The design makes the ' +
             'dataset balanced by construction, around 682 raw answers per emotion.',
           'After dropping empty, very short (under three words) and boilerplate answers, 1,860 examples ' +
             'remain, split 1,488 / 372 stratified with seed 42.',
@@ -448,12 +447,12 @@ export const projects: Project[] = [
           'The headline comparison is three setups evaluated on the same 372-example held-out set. ' +
             'Off-the-shelf RoBERTuito embeddings fed to an SVM, with no task-specific training, reach ' +
             '75.8%. Fine-tuning RobertaForSequenceClassification end to end gives 83.3% accuracy and 0.833 ' +
-            'F1 macro, which is the fine-tuned transformer\'s own performance. Using the fine-tuned model ' +
+            'F1 macro — that is the fine-tuned transformer\'s own performance. Using the fine-tuned model ' +
             'purely as a feature extractor and training a separate SVM on its CLS embeddings gives 96.0% ' +
             'accuracy and 0.96 F1 macro.',
           'These are two different architectures, not two readings of the same model. The 96% figure was ' +
-            'checked against 5-fold and 10-fold stratified cross-validation, 94.4% (±1.3%) and 94.6% ' +
-            '(±1.8%), so it is not a lucky split, but it is also not the same claim as the 83.3%.',
+            'checked against 5-fold and 10-fold stratified cross-validation — 94.4% (±1.3%) and 94.6% ' +
+            '(±1.8%) — so it is not a lucky split, but it is also not the same claim as the 83.3%.',
         ],
       },
     ],
@@ -476,7 +475,7 @@ export const projects: Project[] = [
         head: ['Parameter', 'Value'],
         rows: [
           ['Base model', 'pysentimiento/robertuito-base-uncased'],
-          ['Epochs', '8; best checkpoint by validation F1 macro was epoch 4'],
+          ['Epochs', '8 — best checkpoint by validation F1 macro was epoch 4'],
           ['Batch size', '16'],
           ['Learning rate', '2e-5'],
           ['Weight decay', '0.1'],
@@ -486,7 +485,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        caption: 'Per-class results: SVM on fine-tuned embeddings (62 test examples per class)',
+        caption: 'Per-class results — SVM on fine-tuned embeddings (62 test examples per class)',
         head: ['Emotion', 'Precision', 'Recall', 'F1'],
         rows: [
           ['Felicidad', '0.95', '0.98', '0.97'],
@@ -505,8 +504,8 @@ export const projects: Project[] = [
         'in both train and test. That can inflate metrics relative to a respondent-disjoint split.',
       'The same 372-example set is used to select the best epoch and to report the final result, and again ' +
         'to evaluate the SVM. Common with small data, but not an independent held-out set.',
-      'The domain is narrow (first-person survey answers to fixed prompts from BUAP students in their ' +
-        'early twenties), and there is a register gap against RoBERTuito\'s Twitter pretraining.',
+      'The domain is narrow — first-person survey answers to fixed prompts from BUAP students in their ' +
+        'early twenties — and there is a register gap against RoBERTuito\'s Twitter pretraining.',
       'The dataset contains real personal narratives. It is included for reproducibility only and is not ' +
         'covered by the repository\'s MIT licence.',
     ],
@@ -515,7 +514,7 @@ export const projects: Project[] = [
 
 export const sideProjects: SideProject[] = [
   {
-    title: 'Liora: full-stack e-commerce',
+    title: 'Liora — full-stack e-commerce',
     description:
       'Storefront with product catalog, cart and checkout, built on an Angular front end against a ' +
       'Django REST backend with MySQL.',

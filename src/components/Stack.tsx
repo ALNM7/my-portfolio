@@ -8,7 +8,7 @@ export function Stack() {
       id="stack"
       index="03 / Stack"
       title="What I actually work with"
-      lede="Limited to tools that appear in a shipped repository or on my CV. No aspirational entries."
+      lede="Limited to tools that appear in a shipped repository or on my CV — no aspirational entries."
     >
       <div className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group, i) => (

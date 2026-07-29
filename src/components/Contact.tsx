@@ -76,7 +76,7 @@ export function Contact() {
           </a>
         </div>
         <p className="mt-4 max-w-xl text-[0.8125rem] leading-relaxed text-fg-faint">
-          Email is the fastest way to reach me. I read it daily and usually reply within a day.
+          Email is the fastest way to reach me — I read it daily and usually reply within a day.
         </p>
       </Reveal>
     </Section>

@@ -1,4 +1,4 @@
-# Portfolio: Alfredo Navarrete Montes
+# Portfolio — Alfredo Navarrete Montes
 
 Personal portfolio for work in high-performance computing, distributed systems and applied NLP.
 Single-page React app, no backend.
@@ -30,7 +30,7 @@ and `src/components/data`.
 
 ```
 src/
-  data/          content: profile, projects (incl. case studies and chart data), experience, skills
+  data/          content — profile, projects (incl. case studies and chart data), experience, skills
   components/    section components; primitives/ and data/ hold the shared building blocks
   hooks/         theme, scroll-spy, and the hash route backing the case-study panel
   styles/        design tokens and base styles
@@ -44,7 +44,7 @@ chart means editing data, not JSX.
 - **Theming.** Light and dark palettes are CSS custom properties under `:root[data-theme]`, exposed
   to Tailwind through `@theme inline`. An inline script in `index.html` applies the stored choice
   before first paint so there is no flash.
-- **Case studies.** Each opens as a panel and is deep-linkable at `#/case/<id>`: shareable,
+- **Case studies.** Each opens as a panel and is deep-linkable at `#/case/<id>` — shareable,
   reloadable, and closed by the browser back button. No router dependency.
 - **Charts.** Rendered as layout rather than canvas or SVG so they stay legible at phone width, and
   each one ships a visually hidden `<table>` with the same numbers for assistive tech.
