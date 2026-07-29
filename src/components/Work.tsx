@@ -82,7 +82,7 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
                 </div>
               </div>
 
-              {/* Metrics rail — the reason to read further. */}
+              {/* Metrics rail: the reason to read further. */}
               <dl className="flex gap-6 lg:flex-col lg:gap-4 lg:border-l lg:border-line lg:pl-8">
                 {project.metrics.map((metric) => (
                   <div key={metric.label} className="min-w-0">
