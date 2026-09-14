@@ -4,6 +4,7 @@ import { Section } from './primitives/Section';
 import { TagRow } from './primitives/Tag';
 import { roles } from '../data/experience';
 import { profile } from '../data/profile';
+import { fadeUp, staggerGroup, viewportOnce } from '../lib/motion';
 
 export function Experience() {
   return (
@@ -13,15 +14,18 @@ export function Experience() {
       title="Research, cluster time and industry"
       lede="Two research groups, a semester of benchmark campaigns on production HPC hardware, and an internship in industry."
     >
-      <div className="space-y-0">
-        {roles.map((role, i) => (
+      <motion.div
+        variants={staggerGroup()}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        className="space-y-0"
+      >
+        {roles.map((role) => (
           <motion.article
             key={`${role.org}-${role.period}`}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.45, delay: Math.min(i, 3) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-            className="grid gap-5 border-t border-line py-8 lg:grid-cols-[12rem_1fr] lg:gap-10 lg:py-10"
+            variants={fadeUp}
+            className="grid gap-5 border-t border-line py-10 lg:grid-cols-[13rem_1fr] lg:gap-12 lg:py-12"
           >
             <div className="lg:pt-1">
               <div className="tabular text-[0.75rem] text-fg-faint">{role.period}</div>
@@ -66,11 +70,8 @@ export function Experience() {
         ))}
 
         <motion.article
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="grid gap-5 border-y border-line py-8 lg:grid-cols-[12rem_1fr] lg:gap-10 lg:py-10"
+          variants={fadeUp}
+          className="grid gap-5 border-y border-line py-10 lg:grid-cols-[13rem_1fr] lg:gap-12 lg:py-12"
         >
           <div className="lg:pt-1">
             <div className="tabular text-[0.75rem] text-fg-faint">{profile.education.period}</div>
@@ -92,7 +93,7 @@ export function Experience() {
             </p>
           </div>
         </motion.article>
-      </div>
+      </motion.div>
     </Section>
   );
 }

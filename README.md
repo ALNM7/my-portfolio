@@ -37,6 +37,12 @@ chart means editing data, not JSX.
 
 - Numbers on the site come from the linked repository's README or its report. Bounds are shown as
   bounds, team projects state which part was mine, and reported limitations are kept.
+- Typography: Inter and JetBrains Mono are self-hosted as variable WOFF2 under `public/fonts`,
+  latin and latin-ext subsets only. The two latin faces are preloaded in `index.html`; latin-ext
+  stays behind its `unicode-range`. An `Inter Fallback` face remaps Arial's metrics so the swap
+  does not shift layout.
+- Motion: curves, durations and stagger offsets live in `src/lib/motion.ts`. Entrances decelerate,
+  interactive feedback stays under 300ms, and only `transform` and `opacity` are animated.
 - Theming: light and dark palettes are CSS custom properties under `:root[data-theme]`, exposed to
   Tailwind through `@theme inline`. An inline script in `index.html` applies the stored choice
   before first paint to avoid a flash.

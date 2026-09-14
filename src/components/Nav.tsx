@@ -31,13 +31,13 @@ export function Nav() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-colors duration-300',
+        'fixed inset-x-0 top-0 z-40 transition-colors duration-[260ms] ease-out',
         scrolled || menuOpen
-          ? 'border-b border-line bg-bg'
+          ? 'border-b border-line bg-bg/80 backdrop-blur-xl backdrop-saturate-150'
           : 'border-b border-transparent',
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+      <nav className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         <a
           href="#top"
           className="group flex items-baseline gap-2.5 text-[0.9375rem] font-semibold tracking-tight text-fg"
@@ -53,14 +53,14 @@ export function Nav() {
                 <a
                   href={`#${link.id}`}
                   className={cn(
-                    'rounded-md px-3 py-1.5 text-[0.8125rem] transition-colors',
+                    'rounded-md px-3 py-1.5 text-[0.8125rem] transition-colors duration-[180ms]',
                     active === link.id ? 'text-fg' : 'text-fg-dim hover:text-fg',
                   )}
                 >
                   {link.label}
                   <span
                     className={cn(
-                      'mx-auto mt-1 block h-px transition-all duration-300',
+                      'mx-auto mt-1 block h-px origin-center transition-all duration-[260ms] ease-out',
                       active === link.id ? 'w-full bg-accent' : 'w-0 bg-transparent',
                     )}
                   />
@@ -73,7 +73,7 @@ export function Nav() {
             type="button"
             onClick={toggle}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            className="ml-1 rounded-md border border-line p-2 text-fg-dim transition-colors hover:border-line-strong hover:text-fg"
+            className="ml-1 rounded-md border border-line p-2 text-fg-dim transition-colors duration-[180ms] hover:border-line-strong hover:text-fg"
           >
             {theme === 'dark' ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
@@ -91,7 +91,7 @@ export function Nav() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-line bg-bg md:hidden">
+        <div className="border-t border-line bg-bg/95 backdrop-blur-xl md:hidden">
           <ul className="mx-auto max-w-6xl px-5 py-2 sm:px-8">
             {links.map((link) => (
               <li key={link.id} className="border-b border-line last:border-0">
