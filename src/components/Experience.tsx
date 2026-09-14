@@ -10,8 +10,8 @@ export function Experience() {
     <Section
       id="experience"
       index="02 / Experience"
-      title="Research assistantships and cluster time"
-      lede="Two research groups and a semester of benchmark campaigns on production HPC hardware."
+      title="Research, cluster time and industry"
+      lede="Two research groups, a semester of benchmark campaigns on production HPC hardware, and an internship in industry."
     >
       <div className="space-y-0">
         {roles.map((role, i) => (

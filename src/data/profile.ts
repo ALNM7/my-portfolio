@@ -17,11 +17,13 @@ export const profile = {
     'of rate limiting, and ship NLP pipelines that have to answer a scoring server on a deadline.',
 
   bio: [
-    'I am a final-year Information Technologies engineering student at BUAP, currently a research ' +
-      'assistant at the Health Technologies Laboratory. In 2026 I built the BUAP team\'s submission ' +
-      'pipeline for MentalRiskES at IberLEF, an early-detection task on Spanish clinical text, where we ' +
-      'placed 6th overall and recorded the best early-detection score and the lowest energy consumption ' +
-      'of any participating team.',
+    'I am a final-year Information Technologies engineering student at BUAP, currently a software ' +
+      'engineering intern in the IT Solutions area at Volkswagen de México, where I work on data ' +
+      'transformation and on automating file handling that used to be manual.',
+    'Earlier in 2026 I was a research assistant at the Health Technologies Laboratory at BUAP, where ' +
+      'I built the team\'s submission pipeline for MentalRiskES at IberLEF, an early-detection task on ' +
+      'Spanish clinical text. We placed 6th overall and recorded the best early-detection score and the ' +
+      'lowest energy consumption of any participating team.',
     'Before that I spent a semester at the University of New Mexico, splitting my time between the ' +
       'Anderson School of Management, where I built a distributed crawling pipeline for a Kickstarter ' +
       'research dataset, and the Center for Advanced Research Computing, where I ran HPL and HPCG ' +
@@ -48,7 +50,8 @@ export const profile = {
   ],
 
   availability:
-    'Not available for new roles at the moment. Finishing the B.Eng. at BUAP in December 2026.',
+    'Not available for new roles at the moment. On an internship in industry and finishing the ' +
+    'B.Eng. at BUAP in December 2026.',
 } as const;
 
 /** Numbers shown in the hero grid. */
