@@ -71,7 +71,7 @@ export function BarChart({ spec }: { spec: BarChartSpec }) {
         </p>
       )}
 
-      {/* Accessible equivalent of the figure above. */}
+      {/* Same values as a table, for assistive tech. */}
       <table className="sr-only">
         <caption>
           {spec.title} ({spec.unit})

@@ -65,7 +65,6 @@ export function Experience() {
           </motion.article>
         ))}
 
-        {/* Education closes the timeline rather than sitting in its own section. */}
         <motion.article
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}

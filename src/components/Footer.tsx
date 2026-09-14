@@ -7,10 +7,6 @@ export function Footer() {
         <p className="text-[0.75rem] text-fg-faint">
           © {new Date().getFullYear()} {profile.name}
         </p>
-        <p className="max-w-md text-[0.75rem] leading-relaxed text-fg-faint">
-          Built with React, Vite and Tailwind. Every metric on this site is traceable to the linked
-          repository or its report.
-        </p>
         <a
           href="#top"
           className="label-mono transition-colors hover:text-fg"

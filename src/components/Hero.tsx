@@ -19,11 +19,8 @@ export function Hero() {
               className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1">
-                <span className="relative flex size-1.5">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-ok opacity-60" />
-                  <span className="relative inline-flex size-1.5 rounded-full bg-ok" />
-                </span>
-                <span className="label-mono text-fg-dim">Open to 2026 roles</span>
+                <span className="size-1.5 rounded-full bg-fg-faint" aria-hidden="true" />
+                <span className="label-mono text-fg-dim">Not available for new roles</span>
               </span>
               <span className="inline-flex items-center gap-1.5 text-[0.8125rem] text-fg-faint">
                 <MapPin className="size-3.5" />
@@ -129,7 +126,6 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Headline metrics: the numbers a technical reader scans for first. */}
         <motion.dl
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -82,7 +82,6 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
                 </div>
               </div>
 
-              {/* Metrics rail: the reason to read further. */}
               <dl className="flex gap-6 lg:flex-col lg:gap-4 lg:border-l lg:border-line lg:pl-8">
                 {project.metrics.map((metric) => (
                   <div key={metric.label} className="min-w-0">
@@ -105,7 +104,6 @@ export function Work({ onOpen }: { onOpen: (id: string) => void }) {
         ))}
       </ol>
 
-      {/* Secondary shelf: full-stack work, kept deliberately lighter. */}
       <Reveal className="mt-16">
         <h3 className="label-mono mb-5">Also built</h3>
         <div className="grid gap-4 sm:grid-cols-2">

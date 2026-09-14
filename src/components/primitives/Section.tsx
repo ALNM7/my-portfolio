@@ -39,7 +39,7 @@ export function Section({ id, index, title, lede, children, className }: Section
   );
 }
 
-/** Shared reveal wrapper so every block animates identically. */
+/** Shared scroll-reveal wrapper. */
 export function Reveal({
   children,
   delay = 0,

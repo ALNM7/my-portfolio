@@ -1,11 +1,11 @@
 export type Bar = {
   label: string;
   value: number;
-  /** Rendered de-emphasised, for baselines and for runs I did not own. */
+  /** Rendered de-emphasised, e.g. for baselines. */
   muted?: boolean;
   /** Highlighted as the headline result of the chart. */
   peak?: boolean;
-  /** Replaces the printed value, e.g. "<300" for a bound rather than a measurement. */
+  /** Replaces the printed value, e.g. "<300" for a bound. */
   display?: string;
   /** Small caption under the bar label. */
   note?: string;
@@ -47,7 +47,7 @@ export type Project = {
   org: string;
   period: string;
   repo: string;
-  /** Present when the work was a team effort; states exactly what was mine. */
+  /** Set on team projects to state which part was mine. */
   contribution?: string;
   stack: string[];
   /** Up to three numbers surfaced on the index row. */
@@ -57,7 +57,7 @@ export type Project = {
   sections: CaseSection[];
   charts?: BarChartSpec[];
   tables?: TableSpec[];
-  /** Caveats stated in the repo README; reproduced rather than smoothed over. */
+  /** Caveats as stated in the repo README. */
   caveats?: string[];
 };
 
