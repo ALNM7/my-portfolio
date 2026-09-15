@@ -2,28 +2,53 @@
 
 /* ---------------------------------------------------------------------------
    Fonts
-   Self-hosted variable WOFF2, latin and latin-ext subsets only. One file per
-   family covers the whole weight axis, and unicode-range keeps latin-ext off
-   the wire unless the page actually needs it.
+   Source Serif 4 carries display and body; JetBrains Mono carries labels,
+   units, tags, navigation and every list of tools. Both are self-hosted as
+   variable WOFF2, latin and latin-ext subsets only, so one file per style
+   covers the whole weight axis. Source Serif 4 also ships an optical-size
+   axis, left on `auto` so large display sizes get the high-contrast cut and
+   small text gets the sturdier one.
 --------------------------------------------------------------------------- */
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Source Serif 4";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("/fonts/inter-latin.woff2") format("woff2");
+  src: url("/fonts/source-serif-4-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Source Serif 4";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("/fonts/inter-latin-ext.woff2") format("woff2");
+  src: url("/fonts/source-serif-4-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-latin-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-latin-ext-italic.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
     U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
     U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -52,103 +77,106 @@
 }
 
 /*
-  Metric-matched fallback. Arial is remapped to occupy almost exactly the space
-  Inter will, so the swap when the webfont lands does not shift layout.
+  Fallback line box, taken from Source Serif 4's own head/hhea tables
+  (upm 1000, ascent 1036, descent -335, lineGap 0). Forcing the fallback into
+  the same line box means the swap cannot move anything vertically. Horizontal
+  width is left alone: a size-adjust would need the fallback's measured
+  average advance, and guessing at it is worse than omitting it.
 */
 @font-face {
-  font-family: "Inter Fallback";
-  src: local("Arial");
-  size-adjust: 107.12%;
-  ascent-override: 90.2%;
-  descent-override: 22.48%;
+  font-family: "Source Serif Fallback";
+  src: local("Georgia"), local("Times New Roman");
+  ascent-override: 103.6%;
+  descent-override: 33.5%;
   line-gap-override: 0%;
 }
 
 /* ---------------------------------------------------------------------------
    Design tokens
-   Two palettes driven by [data-theme] on <html>. Every token below is
-   referenced through @theme inline, so Tailwind utilities resolve the live
-   value at paint time instead of freezing the dark palette into :root.
+   Two palettes driven by [data-theme] on <html>, both referenced through
+   @theme inline so Tailwind utilities resolve the live value at paint time.
 
-   The dark ramp climbs with elevation: bg sits lowest, each surface above it
-   is lighter. Text pairs were checked against WCAG; every foreground token
-   clears 4.5:1 on both bg and surface.
+   The ground is warm and near-neutral rather than blue-black, which is what
+   lets the cyan read as ink instead of as part of the background. Every text
+   token clears WCAG 4.5:1 on bg, bg-raised, surface and surface-2.
 --------------------------------------------------------------------------- */
 
 :root,
 :root[data-theme="dark"] {
-  --bg: #0a0b0e;
-  --bg-raised: #0f1116;
-  --surface: #13161c;
-  --surface-2: #1a1e26;
-  --surface-3: #232833;
-  --line: #23272f;
-  --line-strong: #353b47;
-  --fg: #edeef1;
-  --fg-dim: #a9afba;
-  --fg-faint: #79818e;
-  --accent: #6f96f5;
-  --accent-fg: #080a0e;
-  --accent-soft: #1b2742;
-  --ok: #45c08c;
-  --warn: #d9a441;
-  --series-1: #6f96f5;
-  --series-2: #3fb8ab;
-  --series-3: #b98ae8;
-  --series-4: #d9a441;
-  --grid: #1b1f27;
-  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.5);
-  --shadow-2: 0 1px 2px rgb(0 0 0 / 0.45), 0 10px 30px -14px rgb(0 0 0 / 0.75);
-  --shadow-3: 0 1px 2px rgb(0 0 0 / 0.4), 0 28px 70px -28px rgb(0 0 0 / 0.85);
-  --shadow: var(--shadow-2);
+  --bg: #0d0c0c;
+  --bg-raised: #131211;
+  --surface: #191817;
+  --surface-2: #211f1f;
+  --surface-3: #2d2b2b;
+  --line: #262423;
+  --line-strong: #444141;
+  --fg: #f8f4f4;
+  --fg-dim: #bab6b6;
+  --fg-faint: #9b9797;
+  --accent: #62c5ee;
+  --accent-bright: #99e0ff;
+  --accent-2: #ff90b1;
+  --ok: #6ecfa3;
+  --warn: #edbb00;
+  --series-1: #62c5ee;
+  --series-2: #ff90b1;
+  --series-3: #edbb00;
+  --series-4: #6ecfa3;
+  /* Ink used on any solid fill: never white. */
+  --ink: #0d0c0c;
+  /* Dot colour of the halftone screen: the ground punching back through. */
+  --screen-ink: rgb(13 12 12 / 0.62);
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  --bg: #fcfcfb;
-  --bg-raised: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #f3f3f1;
-  --surface-3: #eaeae6;
-  --line: #e3e3df;
-  --line-strong: #c9c9c3;
-  --fg: #101317;
-  --fg-dim: #4f5661;
-  --fg-faint: #6c737f;
-  --accent: #2452cf;
-  --accent-fg: #ffffff;
-  --accent-soft: #e7edfb;
-  --ok: #146b50;
-  --warn: #7f5a10;
-  --series-1: #2452cf;
-  --series-2: #0f6f66;
-  --series-3: #7442b4;
-  --series-4: #8a600d;
-  --grid: #ebebe7;
-  --shadow-1: 0 1px 2px rgb(16 19 23 / 0.05);
-  --shadow-2: 0 1px 2px rgb(16 19 23 / 0.05), 0 10px 30px -16px rgb(16 19 23 / 0.16);
-  --shadow-3: 0 1px 2px rgb(16 19 23 / 0.04), 0 28px 70px -30px rgb(16 19 23 / 0.24);
-  --shadow: var(--shadow-2);
+  --bg: #f3f2f2;
+  --bg-raised: #faf9f9;
+  --surface: #eae9e9;
+  --surface-2: #e0dede;
+  --surface-3: #d7d3d3;
+  --line: #d8d5d5;
+  --line-strong: #b4b0b0;
+  --fg: #201e1d;
+  --fg-dim: #5a5757;
+  /*
+    The proposal put light fg-faint at #6e6a6a, which clears 4.5:1 on the page
+    ground but drops to 3.99:1 on surface-2, where table and chart captions
+    actually sit. Darkened until it clears on every ground the token is used on.
+  */
+  --fg-faint: #615d5d;
+  --accent: #006786;
+  --accent-bright: #00506a;
+  --accent-2: #aa0b56;
+  --ok: #14684f;
+  --warn: #6b5400;
+  --series-1: #006786;
+  --series-2: #aa0b56;
+  --series-3: #6b5400;
+  --series-4: #14684f;
+  --ink: #f3f2f2;
+  --screen-ink: rgb(32 30 29 / 0.38);
   color-scheme: light;
 }
 
 /* ---------------------------------------------------------------------------
    Motion
-   Durations and curves follow the usual UI guidance: entrances decelerate,
-   nothing interactive runs past ~300ms, and only transform and opacity are
-   ever animated so the work stays on the compositor.
+   Two curves only: entrances decelerate out of .2,0,0,1; interaction uses
+   .4,0,.2,1. Nothing animates a property that would force layout.
 --------------------------------------------------------------------------- */
 
 :root {
-  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+  --ease-interaction: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --dur-micro: 120ms;
-  --dur-short: 180ms;
-  --dur-medium: 260ms;
-  --dur-reveal: 440ms;
+  --dur-press: 80ms;
+  --dur-glyph: 120ms;
+  --dur-tag: 140ms;
+  --dur-link: 160ms;
+  --dur-row: 200ms;
+  --dur-panel: 280ms;
+  --dur-bar: 380ms;
+  --dur-enter: 420ms;
 }
 
 @theme inline {
@@ -163,20 +191,27 @@
   --color-fg-dim: var(--fg-dim);
   --color-fg-faint: var(--fg-faint);
   --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
-  --color-accent-soft: var(--accent-soft);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-2: var(--accent-2);
+  --color-ink: var(--ink);
   --color-ok: var(--ok);
   --color-warn: var(--warn);
 
-  --font-sans: "Inter", "Inter Fallback", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Source Serif 4", "Source Serif Fallback", Georgia,
+    "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo,
     Consolas, "Liberation Mono", monospace;
 
-  --radius-card: 0.75rem;
+  /* Single radius. Nothing on the site is rounder than this. */
+  --radius-ink: 2px;
 
-  --shadow-card: var(--shadow-2);
-  --shadow-panel: var(--shadow-3);
+  /* The 4px rhythm the layout is built on, for the steps Tailwind lacks. */
+  --spacing-rhythm-sm: 34px;
+  --spacing-rhythm: 42px;
+  --spacing-rhythm-lg: 52px;
+  --spacing-gap-section: 68px;
+  --spacing-gap-section-md: 88px;
+  --spacing-gap-section-lg: 112px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -186,63 +221,66 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--bg);
     color: var(--fg);
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.65;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
     background: var(--accent);
-    color: var(--accent-fg);
+    color: var(--ink);
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 3px;
+    outline-offset: 2px;
   }
 
   /*
-    Display sizes run from 11px labels to a 96px h1, roughly a 9:1 spread.
-    Optical tracking tightens as the size grows, which is what keeps large
-    Inter from looking loose.
+    Display runs from an 11px mono label to a 116px serif h1. Source Serif is
+    drawn tight enough that the tracking only has to come back a little as the
+    size grows.
   */
   h1,
   h2,
   h3,
   h4 {
-    font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.022em;
+    font-weight: 400;
     text-wrap: balance;
   }
 
   h1 {
-    font-size: clamp(3rem, 1.9rem + 5.2vw, 6rem);
-    font-weight: 620;
-    letter-spacing: -0.045em;
-    line-height: 1.02;
+    font-size: clamp(3.25rem, 1.6rem + 6.2vw, 7.25rem);
+    letter-spacing: -0.028em;
+    line-height: 0.88;
   }
 
   h2 {
-    font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
-    letter-spacing: -0.034em;
-    line-height: 1.08;
+    font-size: clamp(2.125rem, 1.4rem + 2.6vw, 3.25rem);
+    letter-spacing: -0.022em;
+    line-height: 1;
   }
 
   h3 {
-    font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
-    letter-spacing: -0.018em;
+    font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.9375rem);
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+
+  h4 {
+    font-size: clamp(1.3125rem, 1.2rem + 0.4vw, 1.6875rem);
+    letter-spacing: -0.012em;
+    line-height: 1.2;
   }
 
   p {
@@ -258,79 +296,159 @@
    Component-level primitives
 --------------------------------------------------------------------------- */
 
-/* Monospaced label used for section indices, metric captions, axis ticks. */
+/* Mono label: section indices, metric captions, periods, axis ticks. */
 .label-mono {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
+  line-height: 1.4;
   text-transform: uppercase;
   color: var(--fg-faint);
-  font-weight: 500;
 }
 
+/* Mono at UI size: navigation, action links, tags. */
+.mono-ui {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* Every measured figure on the site. Lining, tabular, never re-flowing. */
+.numeral {
+  font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 400;
+}
+
+.numeral-lg {
+  font-size: 2.875rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.numeral-rail {
+  font-size: 1.875rem;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+/* Mono figures inside running text and table cells. */
 .tabular {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1, "zero" 1;
 }
 
-/* Large measured values: tight, lined up, and never re-flowing as they change. */
-.numeral {
+/*
+  Halftone plate. Images print through a dot screen rather than sitting on a
+  card: the photo is set to luminosity so it picks up the screen underneath.
+  This is a print texture, not a glow.
+*/
+.halftone {
+  position: relative;
+  background-color: var(--surface);
+  background-image: radial-gradient(var(--surface-3) 1.1px, transparent 1.2px);
+  background-size: 6px 6px;
+}
+
+.halftone img {
+  mix-blend-mode: luminosity;
+}
+
+/*
+  The screen prints over the photograph. Underneath it the image would simply
+  be covered, which is why the plate alone was not enough.
+*/
+.halftone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--screen-ink) 1.1px, transparent 1.2px);
+  background-size: 6px 6px;
+  pointer-events: none;
+}
+
+/* The masthead pair: heavy rule over hairline, with the data rail between. */
+.rule-thick {
+  height: 3px;
+  background: var(--fg);
+}
+
+.rule-thin {
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* Stack tag. Border only, single radius, no fill. */
+.tag {
   font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1, "zero" 1;
-  letter-spacing: -0.03em;
-  font-weight: 550;
+  font-size: 0.6875rem;
+  color: var(--fg-dim);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-ink);
+  padding: 4px 9px;
+  transition: border-color var(--dur-tag) var(--ease-interaction),
+    color var(--dur-tag) var(--ease-interaction);
 }
 
-/* Faint engineering grid, used behind the hero only. */
-.blueprint {
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 76% 58% at 50% 0%, #000 18%, transparent 76%);
-  -webkit-mask-image: radial-gradient(ellipse 76% 58% at 50% 0%, #000 18%, transparent 76%);
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--fg);
 }
 
-.hairline-t {
-  border-top: 1px solid var(--line);
+/* Action links carry their rule at all times; it inks in on hover. */
+.link-rule {
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 3px;
+  transition: color var(--dur-link) var(--ease-interaction),
+    border-color var(--dur-link) var(--ease-interaction);
 }
 
-.card {
+.link-rule:hover {
+  color: var(--accent-bright);
+  border-color: var(--accent);
+}
+
+.link-rule-active {
+  border-bottom-color: var(--accent);
+  color: var(--fg);
+}
+
+/* Solid button. Ink on paper, never white on colour. */
+.btn-solid {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--fg);
+  border-radius: var(--radius-ink);
+  padding: 11px 20px;
+  transition: background-color var(--dur-link) var(--ease-interaction),
+    transform var(--dur-press) var(--ease-interaction);
+}
+
+.btn-solid:hover {
+  background: var(--accent-bright);
+}
+
+.btn-solid:active {
+  transform: translateY(1px);
+}
+
+/* Bordered block, used only for data figures and tables. No shadow anywhere. */
+.plate {
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-}
-
-.card-hover {
-  transition: border-color var(--dur-short) var(--ease-out-quad),
-    background-color var(--dur-short) var(--ease-out-quad),
-    transform var(--dur-short) var(--ease-out-quad);
-}
-
-.card-hover:hover {
-  border-color: var(--line-strong);
-  background-color: var(--surface-2);
-}
-
-/* Link with an underline that grows from the left on hover. */
-.link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size var(--dur-medium) var(--ease-out-expo);
-}
-
-.link-underline:hover {
-  background-size: 100% 1px;
+  border-radius: var(--radius-ink);
 }
 
 .scroll-lock {
   overflow: hidden;
 }
 
-/* Thin scrollbar inside the case-study panel. */
 .thin-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;

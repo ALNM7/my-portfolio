@@ -2,9 +2,9 @@ import type { TableSpec } from '../../data/types';
 
 export function DataTable({ spec }: { spec: TableSpec }) {
   return (
-    <figure className="card overflow-hidden">
+    <figure className="plate overflow-hidden">
       {spec.caption && (
-        <figcaption className="border-b border-line px-5 py-3.5 text-[0.8125rem] font-medium text-fg">
+        <figcaption className="border-b border-line px-5 py-3.5 text-[0.9375rem] text-fg">
           {spec.caption}
         </figcaption>
       )}
@@ -32,7 +32,7 @@ export function DataTable({ spec }: { spec: TableSpec }) {
                     key={i}
                     className={
                       i === 0
-                        ? 'px-5 py-3 align-top text-[0.8125rem] font-medium text-fg'
+                        ? 'px-5 py-3 align-top text-[0.9375rem] text-fg'
                         : 'tabular px-5 py-3 align-top text-[0.8125rem] text-fg-dim'
                     }
                   >

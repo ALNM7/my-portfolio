@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import type { BarChartSpec } from '../../data/types';
 import { cn } from '../../lib/cn';
+import { DUR_BAR, entrance, viewportEdge } from '../../lib/motion';
 
 function format(value: number) {
   // Keep one decimal only when the measurement actually has one.
@@ -16,10 +17,10 @@ export function BarChart({ spec }: { spec: BarChartSpec }) {
   const max = Math.max(...spec.bars.map((bar) => bar.value));
 
   return (
-    <figure className="card p-5 sm:p-6">
+    <figure className="plate p-5 sm:p-6">
       <figcaption className="mb-5">
-        <h4 className="text-[0.9375rem] font-semibold text-fg">{spec.title}</h4>
-        {spec.caption && <p className="mt-1 text-[0.8125rem] text-fg-dim">{spec.caption}</p>}
+        <h4 className="text-[1.0625rem] text-fg">{spec.title}</h4>
+        {spec.caption && <p className="mt-1 text-[0.9375rem] text-fg-dim">{spec.caption}</p>}
         <p className="label-mono mt-2">{spec.unit}</p>
       </figcaption>
 
@@ -36,15 +37,15 @@ export function BarChart({ spec }: { spec: BarChartSpec }) {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="h-6 min-w-0 flex-1 overflow-hidden rounded-[3px] bg-surface-2">
+                <div className="h-6 min-w-0 flex-1 overflow-hidden rounded-ink bg-surface-2">
                   <motion.div
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.7, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={viewportEdge}
+                    transition={{ duration: DUR_BAR, delay: i * 0.04, ease: entrance }}
                     style={{ width: `${pct}%`, transformOrigin: 'left' }}
                     className={cn(
-                      'h-full rounded-[3px]',
+                      'h-full rounded-ink',
                       bar.peak && 'bg-accent',
                       !bar.peak && !bar.muted && 'bg-fg-faint',
                       bar.muted && 'bg-line-strong',
@@ -54,7 +55,7 @@ export function BarChart({ spec }: { spec: BarChartSpec }) {
                 <div
                   className={cn(
                     'tabular w-[4.5rem] shrink-0 text-right text-[0.8125rem]',
-                    bar.peak ? 'font-semibold text-accent' : 'text-fg-dim',
+                    bar.peak ? 'text-accent' : 'text-fg-dim',
                   )}
                 >
                   {bar.display ?? format(bar.value)}

@@ -1,81 +1,53 @@
-import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { Section, Reveal } from './primitives/Section';
 import { profile } from '../data/profile';
 
 const channels = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-    external: false,
-  },
-  {
-    icon: Github,
-    label: 'GitHub',
-    value: profile.githubHandle,
-    href: profile.github,
-    external: true,
-  },
-  {
-    icon: Linkedin,
-    label: 'LinkedIn',
-    value: profile.linkedinHandle,
-    href: profile.linkedin,
-    external: true,
-  },
+  { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, external: false },
+  { label: 'GitHub', value: profile.githubHandle, href: profile.github, external: true },
+  { label: 'LinkedIn', value: profile.linkedinHandle, href: profile.linkedin, external: true },
 ];
 
 export function Contact() {
   return (
-    <Section
-      id="contact"
-      index="05 / Contact"
-      title="Get in touch"
-      lede={profile.availability}
-    >
+    <Section id="contact" index="05" title="Get in touch" lede={profile.availability}>
       <Reveal>
-        <div className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
-          {channels.map(({ icon: Icon, label, value, href, external }) => (
-            <a
-              key={label}
-              href={href}
-              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className="group flex flex-col bg-surface p-6 transition-colors hover:bg-surface-2"
-            >
-              <div className="mb-4 flex items-center justify-between">
-                <Icon className="size-4 text-fg-faint transition-colors group-hover:text-accent" />
-                <ArrowUpRight className="size-3.5 text-fg-faint opacity-0 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
-              </div>
-              <div className="label-mono mb-1.5">{label}</div>
-              <div className="truncate font-mono text-[0.8125rem] text-fg" title={value}>
-                {value}
-              </div>
-            </a>
+        <ul className="border-t border-line">
+          {channels.map(({ label, value, href, external }) => (
+            <li key={label} className="border-b border-line">
+              <a
+                href={href}
+                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className="group flex flex-wrap items-baseline gap-x-6 gap-y-1 py-5 transition-transform duration-[200ms] ease-[cubic-bezier(0.4,0,0.2,1)] sm:hover:translate-x-1.5"
+              >
+                <span className="label-mono w-24 shrink-0 transition-colors duration-[200ms] group-hover:text-accent">
+                  {label}
+                </span>
+                <span className="mono-ui min-w-0 break-all text-fg">{value}</span>
+                <span className="label-mono ml-auto hidden text-accent sm:block">↗</span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </Reveal>
 
-      <Reveal delay={0.1} className="mt-10">
-        <div className="flex flex-wrap items-center gap-3">
+      <Reveal delay={0.06} className="mt-10">
+        <div className="flex flex-wrap items-center gap-x-[26px] gap-y-4">
           <a
             href={`mailto:${profile.email}?subject=${encodeURIComponent('Hello Alfredo')}`}
-            className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-[0.9375rem] font-medium text-accent-fg transition-opacity hover:opacity-90"
+            className="btn-solid inline-block"
           >
-            <Mail className="size-4" />
-            Write to me
+            Write to me →
           </a>
           <a
             href={profile.cv}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-line bg-surface px-5 py-3 text-[0.9375rem] font-medium text-fg transition-colors hover:border-line-strong"
+            className="mono-ui link-rule text-fg"
           >
-            <FileText className="size-4" />
             Download CV
           </a>
         </div>
-        <p className="mt-4 max-w-xl text-[0.8125rem] leading-relaxed text-fg-faint">
+        <p className="mt-6 max-w-[54ch] text-[0.9375rem] leading-[1.6] text-fg-faint">
           Email is the fastest way to reach me.
         </p>
       </Reveal>

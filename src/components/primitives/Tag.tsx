@@ -13,10 +13,8 @@ export function Tag({
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-md border px-2 py-0.5 font-mono text-[0.6875rem] tracking-tight whitespace-nowrap',
-        tone === 'accent'
-          ? 'border-accent/40 bg-accent-soft text-accent'
-          : 'border-line bg-surface-2 text-fg-dim',
+        'tag inline-flex items-center whitespace-nowrap',
+        tone === 'accent' && 'border-accent text-accent',
         className,
       )}
     >
@@ -30,7 +28,7 @@ export function TagRow({ items, limit }: { items: readonly string[]; limit?: num
   const overflow = limit ? items.length - shown.length : 0;
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-2">
       {shown.map((item) => (
         <Tag key={item}>{item}</Tag>
       ))}

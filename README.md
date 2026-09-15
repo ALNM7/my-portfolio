@@ -37,10 +37,16 @@ chart means editing data, not JSX.
 
 - Numbers on the site come from the linked repository's README or its report. Bounds are shown as
   bounds, team projects state which part was mine, and reported limitations are kept.
-- Typography: Inter and JetBrains Mono are self-hosted as variable WOFF2 under `public/fonts`,
-  latin and latin-ext subsets only. The two latin faces are preloaded in `index.html`; latin-ext
-  stays behind its `unicode-range`. An `Inter Fallback` face remaps Arial's metrics so the swap
-  does not shift layout.
+- Typography: Source Serif 4 carries display and body, JetBrains Mono carries labels, units, tags,
+  navigation and tool lists. Both are self-hosted as variable WOFF2 under `public/fonts`, latin and
+  latin-ext subsets only. The two latin faces are preloaded in `index.html`; latin-ext stays behind
+  its `unicode-range`. A `Source Serif Fallback` face carries Source Serif's own line-box metrics so
+  the swap cannot shift anything vertically.
+- Colour: one ink-on-paper system in two themes. Cyan is the primary ink, magenta the second, amber
+  the third; solid fills always take `--ink`, never white. Every text token clears WCAG 4.5:1 on bg,
+  bg-raised, surface and surface-2 in both themes.
+- No cards and no shadows. Hierarchy is carried by hairlines, the index channel and air. The single
+  radius is 2px, and the only vertical rule on a page is the figures rail in Work.
 - Motion: curves, durations and stagger offsets live in `src/lib/motion.ts`. Entrances decelerate,
   interactive feedback stays under 300ms, and only `transform` and `opacity` are animated.
 - Theming: light and dark palettes are CSS custom properties under `:root[data-theme]`, exposed to

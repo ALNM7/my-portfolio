@@ -1,133 +1,112 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, FileText, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { headlineStats, profile } from '../data/profile';
-import { fadeUp, staggerGroup } from '../lib/motion';
+import { enterUp, staggerGroup } from '../lib/motion';
+
+const social = [
+  { code: 'GH', label: 'GitHub', href: profile.github },
+  { code: 'LI', label: 'LinkedIn', href: profile.linkedin },
+  { code: 'EM', label: 'Email', href: `mailto:${profile.email}` },
+];
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-44 sm:pb-28">
-      <div className="pointer-events-none absolute inset-0 blueprint" aria-hidden="true" />
-
+    <section id="top" className="pt-24 sm:pt-28">
       <motion.div
-        variants={staggerGroup(0.07)}
+        variants={staggerGroup(0.06)}
         initial="hidden"
         animate="show"
-        className="relative mx-auto max-w-6xl px-5 sm:px-8"
+        className="mx-auto max-w-[84rem] px-5 sm:px-8 lg:px-12"
       >
-        <motion.div
-          variants={fadeUp}
-          className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-2"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1">
-            <span className="size-1.5 rounded-full bg-fg-faint" aria-hidden="true" />
-            <span className="label-mono text-fg-dim">Not available for new roles</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-[0.8125rem] text-fg-faint">
-            <MapPin className="size-3.5" />
-            {profile.location}
-          </span>
+        {/* Masthead pair: heavy rule, data rail, hairline. */}
+        <motion.div variants={enterUp}>
+          <div className="rule-thick" />
+          <div className="label-mono flex flex-wrap items-center gap-x-6 gap-y-1 py-2.5">
+            <span className="text-accent">Not available for new roles</span>
+            <span>{profile.location} · UTC−6</span>
+            <span className="sm:ml-auto">Updated {__BUILD_STAMP__}</span>
+          </div>
+          <div className="rule-thin" />
         </motion.div>
 
-        {/*
-          The name runs the full measure rather than sharing a row with the
-          portrait, which is what lets the display size actually be a display
-          size.
-        */}
-        <motion.h1 variants={fadeUp} className="max-w-[18ch] text-fg">
-          {profile.name}
-        </motion.h1>
+        <div className="grid gap-10 pt-10 lg:grid-cols-[1fr_20rem] lg:gap-[3.75rem] lg:pt-12">
+          <div>
+            <motion.h1 variants={enterUp} className="text-fg">
+              {profile.name}
+            </motion.h1>
 
-        <div className="mt-10 grid gap-12 lg:mt-14 lg:grid-cols-[1fr_13rem] lg:items-start lg:gap-16">
-          <div className="max-w-2xl">
             <motion.p
-              variants={fadeUp}
-              className="font-mono text-[0.8125rem] leading-relaxed tracking-tight text-accent sm:text-sm"
+              variants={enterUp}
+              className="mt-7 font-mono text-[0.875rem] leading-[1.5] text-accent"
             >
               {profile.focus}
             </motion.p>
 
             <motion.p
-              variants={fadeUp}
-              className="mt-7 text-[1.0625rem] leading-[1.7] text-fg-dim sm:text-lg"
+              variants={enterUp}
+              className="mt-[22px] max-w-[54ch] text-[1.0625rem] leading-[1.7] text-fg-dim"
             >
               {profile.intro}
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#work"
-                className="group inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-[0.875rem] font-medium text-accent-fg transition-opacity duration-[180ms] hover:opacity-90"
-              >
-                Selected work
-                <ArrowUpRight className="size-4 transition-transform duration-[180ms] ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <motion.div
+              variants={enterUp}
+              className="mt-9 flex flex-wrap items-center gap-x-[26px] gap-y-4"
+            >
+              <a href="#work" className="btn-solid inline-block">
+                Selected work →
               </a>
               <a
                 href={profile.cv}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-line bg-surface px-4 py-2.5 text-[0.875rem] font-medium text-fg transition-colors duration-[180ms] hover:border-line-strong hover:bg-surface-2"
+                className="mono-ui link-rule text-fg"
               >
-                <FileText className="size-4" />
                 Download CV
               </a>
-
-              <div className="flex items-center gap-1 sm:ml-2">
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="rounded-md p-2.5 text-fg-faint transition-colors duration-[180ms] hover:text-fg"
-                >
-                  <Github className="size-[1.125rem]" />
-                </a>
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="rounded-md p-2.5 text-fg-faint transition-colors duration-[180ms] hover:text-fg"
-                >
-                  <Linkedin className="size-[1.125rem]" />
-                </a>
-                <a
-                  href={`mailto:${profile.email}`}
-                  aria-label="Email"
-                  className="rounded-md p-2.5 text-fg-faint transition-colors duration-[180ms] hover:text-fg"
-                >
-                  <Mail className="size-[1.125rem]" />
-                </a>
+              <div className="flex items-center gap-4 sm:ml-1.5">
+                {social.map(({ code, label, href }) => (
+                  <a
+                    key={code}
+                    href={href}
+                    aria-label={label}
+                    {...(href.startsWith('mailto:')
+                      ? {}
+                      : { target: '_blank', rel: 'noopener noreferrer' })}
+                    className="label-mono transition-colors duration-[160ms] hover:text-accent-bright"
+                  >
+                    {code}
+                  </a>
+                ))}
               </div>
             </motion.div>
           </div>
 
-          <motion.div variants={fadeUp} className="order-first w-36 shrink-0 lg:order-none lg:w-52">
-            <div className="overflow-hidden rounded-lg border border-line bg-surface shadow-card">
+          <motion.div variants={enterUp} className="w-44 lg:w-80">
+            <div className="halftone overflow-hidden rounded-ink">
               <img
                 src={profile.photo}
                 alt={profile.name}
-                width={208}
-                height={260}
+                width={320}
+                height={404}
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
           </motion.div>
         </div>
 
+        {/* The four figures close the front page like an index. */}
         <motion.dl
-          variants={staggerGroup(0.05, 0.12)}
-          className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line sm:mt-24 lg:grid-cols-4"
+          variants={staggerGroup(0.06, 0.1)}
+          className="mt-14 grid grid-cols-2 gap-x-10 gap-y-8 border-t border-line pt-7 lg:mt-[4.25rem] lg:grid-cols-4"
         >
           {headlineStats.map((stat) => (
-            <motion.div key={stat.label} variants={fadeUp} className="bg-surface p-6">
-              <dt className="label-mono mb-4">{stat.label}</dt>
-              <dd>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="numeral text-[1.75rem] leading-none text-fg">{stat.value}</span>
-                  <span className="font-mono text-[0.6875rem] text-fg-faint">{stat.unit}</span>
-                </div>
-                <p className="mt-3 text-[0.75rem] leading-snug text-fg-dim">{stat.detail}</p>
+            <motion.div key={stat.label} variants={enterUp} className="flex flex-col gap-[7px]">
+              <dd className="flex items-baseline gap-[7px]">
+                <span className="numeral numeral-lg text-fg">{stat.value}</span>
+                <span className="font-mono text-[0.8125rem] text-fg-dim">{stat.unit}</span>
               </dd>
+              <dt className="label-mono text-fg-dim">{stat.label}</dt>
+              <p className="text-[0.875rem] leading-[1.5] text-fg-faint">{stat.detail}</p>
             </motion.div>
           ))}
         </motion.dl>
