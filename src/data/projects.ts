@@ -12,7 +12,7 @@ export const projects: Project[] = [
     tagline:
       'Round-based LLM pipeline for the IberLEF shared task on early detection of mental-health risk in Spanish.',
     org: 'Health Technologies Laboratory, BUAP',
-    period: 'Jan 2026 - Present',
+    period: 'Jan - Aug 2026',
     repo: 'https://github.com/ALNM7/mentalriskes-2026-llm-pipeline',
     contribution:
       'Built and operated the competition pipeline for the BUAP team; co-authored the resulting paper.',

@@ -10,11 +10,27 @@ export type Role = {
 
 export const roles: Role[] = [
   {
+    title: 'Software Engineering Intern',
+    org: 'IT Solutions, Volkswagen de México',
+    location: 'Puebla, Mexico',
+    period: 'Aug 2026 - Present',
+    current: true,
+    points: [
+      'Build data transformation and ETL workflows that prepare operational data for reporting in ' +
+        'Power BI.',
+      'Developed a recurring job that reviews incoming files at scale and delivers them to SharePoint, ' +
+        'with S3 as the next destination in the pipeline.',
+      'Tuned that job for execution time over large volumes of files and moved it to the background, ' +
+        'so it runs without interrupting the user or waiting on manual steps.',
+      'Added conversion of legacy file formats to current ones as part of the same flow.',
+    ],
+    tags: ['Python', 'ETL', 'Power BI', 'SharePoint', 'Automation'],
+  },
+  {
     title: 'Research Assistant',
     org: 'Health Technologies Laboratory, BUAP',
     location: 'Puebla, Mexico',
-    period: 'Jan 2026 - Present',
-    current: true,
+    period: 'Jan - Aug 2026',
     points: [
       'Participated in MentalRiskES 2026, the IberLEF shared task on early detection of mental-health ' +
         'risk from Spanish social-media text, as part of the BUAP research team.',

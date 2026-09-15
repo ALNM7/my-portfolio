@@ -13,23 +13,24 @@ export const profile = {
   cv: '/CV_Alfredo_Navarrete.pdf',
 
   intro:
-    'I work where measurement meets systems: benchmarking MPI workloads on HPC clusters, ' +
-    'building crawlers that survive being rate-limited for weeks, and shipping NLP pipelines ' +
-    'that have to answer a scoring server on a deadline.',
+    'I benchmark MPI workloads on HPC clusters, build crawlers that keep running through weeks ' +
+    'of rate limiting, and ship NLP pipelines that have to answer a scoring server on a deadline.',
 
   bio: [
-    'I am a final-year Information Technologies engineering student at BUAP, currently a research ' +
-      'assistant at the Health Technologies Laboratory. In 2026 I built the BUAP team\'s submission ' +
-      'pipeline for MentalRiskES at IberLEF, an early-detection task on Spanish clinical text, where we ' +
-      'placed 6th overall and recorded the best early-detection score and the lowest energy consumption ' +
-      'of any participating team.',
+    'I am a final-year Information Technologies engineering student at BUAP, currently a software ' +
+      'engineering intern in the IT Solutions area at Volkswagen de México, where I work on data ' +
+      'transformation and on automating file handling that used to be manual.',
+    'Earlier in 2026 I was a research assistant at the Health Technologies Laboratory at BUAP, where ' +
+      'I built the team\'s submission pipeline for MentalRiskES at IberLEF, an early-detection task on ' +
+      'Spanish clinical text. We placed 6th overall and recorded the best early-detection score and the ' +
+      'lowest energy consumption of any participating team.',
     'Before that I spent a semester at the University of New Mexico, splitting my time between the ' +
       'Anderson School of Management, where I built a distributed crawling pipeline for a Kickstarter ' +
       'research dataset, and the Center for Advanced Research Computing, where I ran HPL and HPCG ' +
       'benchmark campaigns on production clusters under Slurm.',
-    'What connects these is a habit rather than a domain: state the metric, control the variables, ' +
-      'publish the numbers with their caveats. Most of the engineering below exists because a result ' +
-      'needed to be reproducible by someone other than me.',
+    'Most of the work below exists because a result had to be reproducible by someone other than ' +
+      'me. That means stating the metric, controlling the variables, and publishing the numbers with ' +
+      'their caveats.',
   ],
 
   education: {
@@ -49,11 +50,11 @@ export const profile = {
   ],
 
   availability:
-    'Graduating December 2026 and open to new-grad software engineering roles, research ' +
-    'assistantships and internships in HPC, distributed systems and applied ML.',
+    'Not available for new roles at the moment. On an internship in industry and finishing the ' +
+    'B.Eng. at BUAP in December 2026.',
 } as const;
 
-/** Headline numbers on the hero. Every one is traceable to a repo README or the CV. */
+/** Numbers shown in the hero grid. */
 export const headlineStats = [
   {
     value: '2.95',

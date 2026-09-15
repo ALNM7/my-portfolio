@@ -5,6 +5,7 @@ import type { Project } from '../data/types';
 import { BarChart } from './data/BarChart';
 import { DataTable } from './data/DataTable';
 import { Tag } from './primitives/Tag';
+import { DUR_PANEL, entrance } from '../lib/motion';
 
 /**
  * Full-height side panel holding the long-form write-up for one project.
@@ -35,28 +36,28 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: DUR_PANEL, ease: entrance }}
             onClick={onClose}
-            className="absolute inset-0 h-full w-full cursor-default bg-bg/70 backdrop-blur-sm"
+            className="absolute inset-0 h-full w-full cursor-default bg-[rgb(5_5_5_/_0.72)]"
           />
 
           <motion.div
             ref={panelRef}
             tabIndex={-1}
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="thin-scroll absolute inset-y-0 right-0 w-full max-w-3xl overflow-y-auto border-l border-line bg-bg outline-none"
+            initial={{ x: 24, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 24, opacity: 0 }}
+            transition={{ duration: DUR_PANEL, ease: entrance }}
+            className="thin-scroll absolute inset-y-0 right-0 w-full max-w-3xl overflow-y-auto border-l border-line-strong bg-bg-raised outline-none"
           >
-            <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-line bg-bg px-5 py-3.5 sm:px-8">
+            <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-line bg-bg-raised px-5 py-3.5 sm:px-8">
               <span className="label-mono truncate">Case study</span>
               <div className="flex items-center gap-2">
                 <a
                   href={project.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 text-[0.75rem] text-fg-dim transition-colors hover:border-line-strong hover:text-fg"
+                  className="mono-ui link-rule inline-flex items-center gap-1.5 text-fg-dim"
                 >
                   <Github className="size-3.5" />
                   Repository
@@ -65,7 +66,7 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
                   type="button"
                   onClick={onClose}
                   aria-label="Close case study"
-                  className="rounded-md border border-line p-2 text-fg-dim transition-colors hover:border-line-strong hover:text-fg"
+                  className="rounded-ink border border-line-strong p-2 text-fg-dim transition-colors duration-[160ms] hover:border-accent hover:text-fg"
                 >
                   <X className="size-4" />
                 </button>
@@ -73,10 +74,9 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
             </header>
 
             <div className="px-5 pt-10 pb-20 sm:px-8">
-              <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.75rem] text-fg-faint">
-                <span>{project.org}</span>
-                <span aria-hidden="true">·</span>
-                <span className="tabular">{project.period}</span>
+              <div className="label-mono mb-4 flex flex-wrap items-center gap-x-4 gap-y-1">
+                <span className="text-fg-dim">{project.org}</span>
+                <span>{project.period}</span>
               </div>
 
               <h2 className="text-fg">{project.title}</h2>
@@ -84,29 +84,29 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
               <p className="mt-6 text-[1.0625rem] leading-relaxed text-fg-dim">{project.summary}</p>
 
               {project.contribution && (
-                <div className="mt-6 rounded-md border border-line bg-surface p-4">
-                  <div className="label-mono mb-1.5">My contribution</div>
-                  <p className="text-[0.875rem] leading-relaxed text-fg-dim">{project.contribution}</p>
+                <div className="mt-6 border-l border-accent-2 pl-4">
+                  <div className="label-mono mb-1.5 text-accent-2">My contribution</div>
+                  <p className="text-[0.9375rem] leading-[1.6] text-fg-dim italic">
+                    {project.contribution}
+                  </p>
                 </div>
               )}
 
-              <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
+              <dl className="mt-8 grid grid-cols-1 gap-6 border-t border-line pt-6 sm:grid-cols-3">
                 {project.metrics.map((metric) => (
-                  <div key={metric.label} className="bg-surface p-4">
-                    <dd className="flex items-baseline gap-1">
-                      <span className="tabular text-xl font-semibold tracking-tight text-fg">
-                        {metric.value}
-                      </span>
+                  <div key={metric.label}>
+                    <dd className="flex items-baseline gap-1.5">
+                      <span className="numeral numeral-rail text-fg">{metric.value}</span>
                       {metric.unit && (
-                        <span className="font-mono text-[0.6875rem] text-fg-faint">{metric.unit}</span>
+                        <span className="font-mono text-[0.75rem] text-fg-dim">{metric.unit}</span>
                       )}
                     </dd>
-                    <dt className="mt-1 text-[0.75rem] leading-snug text-fg-faint">{metric.label}</dt>
+                    <dt className="label-mono mt-1.5">{metric.label}</dt>
                   </div>
                 ))}
               </dl>
 
-              <div className="mt-6 flex flex-wrap gap-1.5">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {project.stack.map((item) => (
                   <Tag key={item}>{item}</Tag>
                 ))}
@@ -130,7 +130,7 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
                           key={bullet.slice(0, 40)}
                           className="flex gap-3 text-[0.9375rem] leading-[1.7] text-fg-dim"
                         >
-                          <span className="mt-2 size-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                          <span className="mt-[0.8em] h-px w-3 shrink-0 bg-accent" aria-hidden="true" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -159,12 +159,10 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
               )}
 
               {project.caveats && project.caveats.length > 0 && (
-                <section className="mt-12 rounded-lg border border-line bg-surface p-5">
+                <section className="mt-12 border-t border-line pt-6">
                   <div className="mb-3 flex items-center gap-2">
                     <AlertTriangle className="size-4 text-warn" />
-                    <h3 className="text-[0.9375rem] font-semibold text-fg">
-                      Limitations, as reported
-                    </h3>
+                    <h4 className="text-[1.0625rem] text-fg">Limitations, as reported</h4>
                   </div>
                   <ul className="space-y-2.5">
                     {project.caveats.map((caveat) => (
@@ -173,7 +171,7 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
                         className="flex gap-3 text-[0.8125rem] leading-relaxed text-fg-dim"
                       >
                         <span
-                          className="mt-1.5 size-1 shrink-0 rounded-full bg-fg-faint"
+                          className="mt-[0.8em] h-px w-3 shrink-0 bg-line-strong"
                           aria-hidden="true"
                         />
                         <span>{caveat}</span>

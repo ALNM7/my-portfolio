@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Menu, Moon, Sun, X } from 'lucide-react';
 import { profile } from '../data/profile';
+import { roles } from '../data/experience';
 import { useSectionSpy } from '../hooks/useSectionSpy';
 import { useTheme } from '../hooks/useTheme';
 import { cn } from '../lib/cn';
@@ -14,6 +14,10 @@ const links = [
 ] as const;
 
 const ids = links.map((link) => link.id);
+
+/** The masthead byline: current title and the team it sits in. */
+const current = roles.find((role) => role.current) ?? roles[0];
+const byline = `${current.title} · ${current.org.split(',')[0]}`;
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,39 +35,31 @@ export function Nav() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-colors duration-300',
-        scrolled || menuOpen
-          ? 'border-b border-line bg-bg'
-          : 'border-b border-transparent',
+        'fixed inset-x-0 top-0 z-40',
+        // Opaque, never translucent: the rules underneath must not show through.
+        scrolled || menuOpen ? 'border-b border-line bg-bg-raised' : 'border-b border-transparent',
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <a
-          href="#top"
-          className="group flex items-baseline gap-2.5 text-[0.9375rem] font-semibold tracking-tight text-fg"
-        >
-          {profile.shortName}
-          <span className="label-mono hidden sm:inline">{profile.role}</span>
+      <nav className="mx-auto flex max-w-[84rem] items-center gap-8 px-5 py-[18px] sm:px-8 lg:px-12">
+        <a href="#top" className="flex flex-col leading-[1.2]">
+          <span className="text-[1.0625rem] tracking-[-0.005em] text-fg">{profile.shortName}</span>
+          <span className="label-mono hidden sm:block">{byline}</span>
         </a>
 
-        <div className="flex items-center gap-1">
-          <ul className="hidden items-center gap-1 md:flex">
+        <div className="ml-auto flex items-center gap-7">
+          <ul className="hidden items-center gap-7 md:flex">
             {links.map((link) => (
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
                   className={cn(
-                    'rounded-md px-3 py-1.5 text-[0.8125rem] transition-colors',
-                    active === link.id ? 'text-fg' : 'text-fg-dim hover:text-fg',
+                    'mono-ui pb-[3px] transition-colors duration-[160ms]',
+                    active === link.id
+                      ? 'border-b border-accent text-fg'
+                      : 'border-b border-transparent text-fg-dim hover:text-fg',
                   )}
                 >
                   {link.label}
-                  <span
-                    className={cn(
-                      'mx-auto mt-1 block h-px transition-all duration-300',
-                      active === link.id ? 'w-full bg-accent' : 'w-0 bg-transparent',
-                    )}
-                  />
                 </a>
               </li>
             ))}
@@ -73,9 +69,18 @@ export function Nav() {
             type="button"
             onClick={toggle}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            className="ml-1 rounded-md border border-line p-2 text-fg-dim transition-colors hover:border-line-strong hover:text-fg"
+            className="label-mono flex items-center gap-1.5 transition-colors duration-[120ms] hover:text-fg"
           >
-            {theme === 'dark' ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            <span
+              aria-hidden="true"
+              className={cn(
+                'inline-block size-2.5 rounded-full border border-current',
+                theme === 'dark'
+                  ? 'bg-[linear-gradient(90deg,currentColor_50%,transparent_50%)]'
+                  : 'bg-[linear-gradient(90deg,transparent_50%,currentColor_50%)]',
+              )}
+            />
+            <span className="hidden sm:inline">{theme === 'dark' ? 'Dark' : 'Light'}</span>
           </button>
 
           <button
@@ -83,22 +88,22 @@ export function Nav() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
-            className="rounded-md border border-line p-2 text-fg-dim transition-colors hover:text-fg md:hidden"
+            className="label-mono transition-colors duration-[160ms] hover:text-fg md:hidden"
           >
-            {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            {menuOpen ? 'Close' : 'Menu'}
           </button>
         </div>
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-line bg-bg md:hidden">
-          <ul className="mx-auto max-w-6xl px-5 py-2 sm:px-8">
+        <div className="border-t border-line bg-bg-raised md:hidden">
+          <ul className="mx-auto max-w-[84rem] px-5 sm:px-8">
             {links.map((link) => (
               <li key={link.id} className="border-b border-line last:border-0">
                 <a
                   href={`#${link.id}`}
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-between py-3 text-[0.9375rem] text-fg-dim"
+                  className="flex items-center justify-between py-3.5 text-[1.0625rem] text-fg-dim"
                 >
                   {link.label}
                   <span className="label-mono">

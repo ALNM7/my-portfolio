@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { cn } from '../../lib/cn';
+import { DUR_ENTER, entrance, enterUp, staggerGroup, viewportOnce } from '../../lib/motion';
 
 type SectionProps = {
   id: string;
@@ -12,34 +13,46 @@ type SectionProps = {
 };
 
 /**
- * Every section shares one header treatment: a monospaced index, a rule, the
- * title, and an optional lede constrained to a readable measure.
+ * Section head, set like a page in a paper: a hairline flush to the container,
+ * 72px of air, then the title with its number hung off the baseline and the
+ * standfirst pushed to the outer edge.
  */
 export function Section({ id, index, title, lede, children, className }: SectionProps) {
   return (
-    <section id={id} className={cn('scroll-mt-24 border-t border-line py-20 sm:py-28', className)}>
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12 sm:mb-16"
-        >
-          <div className="mb-5 flex items-center gap-4">
-            <span className="label-mono">{index}</span>
-            <span className="h-px flex-1 bg-line" aria-hidden="true" />
-          </div>
-          <h2 className="text-fg">{title}</h2>
-          {lede && <p className="mt-4 max-w-2xl text-[1.0625rem] leading-relaxed text-fg-dim">{lede}</p>}
-        </motion.header>
-        {children}
+    <section id={id} className={cn('scroll-mt-24', className)}>
+      <div className="mx-auto max-w-[84rem] px-5 sm:px-8 lg:px-12">
+        <div className="border-t border-line pt-[68px] pb-[68px] sm:pt-[72px] md:pb-[88px] lg:pb-[112px]">
+          <motion.header
+            variants={staggerGroup(0.06)}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewportOnce}
+            className="flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-7"
+          >
+            <motion.h2 variants={enterUp} className="text-fg">
+              {title}
+            </motion.h2>
+            <motion.span variants={enterUp} className="label-mono text-accent lg:pb-2.5">
+              {index}
+            </motion.span>
+            {lede && (
+              <motion.p
+                variants={enterUp}
+                className="text-[1rem] leading-[1.6] text-fg-faint lg:ml-auto lg:max-w-[38ch] lg:text-right"
+              >
+                {lede}
+              </motion.p>
+            )}
+          </motion.header>
+
+          <div className="mt-14">{children}</div>
+        </div>
       </div>
     </section>
   );
 }
 
-/** Shared reveal wrapper so every block animates identically. */
+/** Shared scroll-reveal wrapper for blocks that are not part of a stagger. */
 export function Reveal({
   children,
   delay = 0,
@@ -51,10 +64,11 @@ export function Reveal({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      variants={enterUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportOnce}
+      transition={{ duration: DUR_ENTER, ease: entrance, delay }}
       className={className}
     >
       {children}
