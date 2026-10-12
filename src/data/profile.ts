@@ -50,8 +50,8 @@ export const profile = {
   ],
 
   availability:
-    'Not available for new roles at the moment. On an internship in industry and finishing the ' +
-    'B.Eng. at BUAP in December 2026.',
+    'Not available for new roles at the moment. On an internship at Volkswagen de México through ' +
+    'February 2027 and finishing the B.Eng. at BUAP in December 2026.',
 } as const;
 
 /** Numbers shown in the hero grid. */
