@@ -13,7 +13,7 @@ export const roles: Role[] = [
     title: 'Software Engineering Intern',
     org: 'IT Solutions, Volkswagen de México',
     location: 'Puebla, Mexico',
-    period: 'Aug 2026 - Feb 2027',
+    period: 'Aug 2026 - Present',
     current: true,
     points: [
       'Developed in PowerShell and VBScript an ETL pipeline that finds CBD files by content, converts ' +
