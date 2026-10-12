@@ -13,18 +13,29 @@ export const roles: Role[] = [
     title: 'Software Engineering Intern',
     org: 'IT Solutions, Volkswagen de México',
     location: 'Puebla, Mexico',
-    period: 'Aug 2026 - Present',
+    period: 'Aug 2026 - Feb 2027',
     current: true,
     points: [
-      'Build data transformation and ETL workflows that prepare operational data for reporting in ' +
-        'Power BI.',
-      'Developed a recurring job that reviews incoming files at scale and delivers them to SharePoint, ' +
-        'with S3 as the next destination in the pipeline.',
-      'Tuned that job for execution time over large volumes of files and moved it to the background, ' +
-        'so it runs without interrupting the user or waiting on manual steps.',
-      'Added conversion of legacy file formats to current ones as part of the same flow.',
+      'Developed in PowerShell and VBScript an ETL pipeline that finds CBD files by content, converts ' +
+        'legacy .xls files to .xlsx and uploads them to AWS S3, recognizing multiple template versions in ' +
+        'English, Spanish and German.',
+      'Processed .xlsx files by reading the underlying XML directly, without opening Excel, and .xls files ' +
+        'through Excel COM, so scans never take over the user\u2019s Excel session.',
+      'Designed a two-flow architecture: one scans the user profile without touching the originals, the ' +
+        'other reviews files arriving through Power Automate (OneDrive for Business to SharePoint).',
+      'Implemented incremental state control with file fingerprints (modified date and size) to skip ' +
+        'processed files and version those that change.',
+      'Built a single-file VBS installer that detects OneDrive, creates the folder structure and registers ' +
+        'a silent daily task, working around GPO restrictions with PowerShell execution via stdin and ' +
+        'schtasks XML.',
+      'Built the SharePoint-to-AWS S3 upload stage using AWS CLI, working through the Zscaler corporate ' +
+        'proxy, with rotating logs and failure-only alerts.',
+      'Migrated authentication from a provisional technical user to IAM Roles Anywhere with a VW CA ' +
+        'certificate, coordinating issuance with the PKI team, and validated the upload in QAS and ' +
+        'production. Coordinated with the NTT DATA team (S3 consumers) and the AWS account administrator ' +
+        'on naming, prefixes and permissions.',
     ],
-    tags: ['Python', 'ETL', 'Power BI', 'SharePoint', 'Automation'],
+    tags: ['PowerShell', 'VBScript', 'ETL', 'AWS S3', 'Power Automate', 'SharePoint'],
   },
   {
     title: 'Research Assistant',
