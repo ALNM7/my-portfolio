@@ -22,8 +22,8 @@ export const roles: Role[] = [
       'Processed .xlsx files by reading the underlying XML directly, without opening Excel, and .xls files ' +
         'through Excel COM, so scans never take over the user\u2019s Excel session.',
       'Designed a two-flow architecture: one scans the user profile without touching the originals, the ' +
-        'other reviews files arriving through Power Automate (OneDrive for Business to SharePoint).',
-      'Implemented incremental state control with file fingerprints (modified date and size) to skip ' +
+        'other reviews files arriving through Power Automate (OneDrive for Business to SharePoint). ' +
+        'Implemented incremental state control with file fingerprints (modified date and size) to skip ' +
         'processed files and version those that change.',
       'Built a single-file VBS installer that detects OneDrive, creates the folder structure and registers ' +
         'a silent daily task, working around GPO restrictions with PowerShell execution via stdin and ' +
