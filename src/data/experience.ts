@@ -45,8 +45,8 @@ export const roles: Role[] = [
     points: [
       'Participated in MentalRiskES 2026, the IberLEF shared task on early detection of mental-health ' +
         'risk from Spanish social-media text, as part of the BUAP research team.',
-      'Placed 6th overall in Task 1 and recorded the best early-detection score (R10, MAE 0.889) with the ' +
-        'lowest energy consumption among all participating teams.',
+      'Won 1st place in the Task 1 early-detection category and placed 6th in the general category, with ' +
+        'the best R10 score (MAE 0.889) and the lowest energy consumption among all participating teams.',
       'Built and operated the competition pipeline in Python, orchestrating GPT-4o-mini, GPT-4.1-nano and ' +
         'GPT-5-nano through the OpenAI API with mock and dry-run workflows.',
       'Co-authored the resulting paper, accepted for publication in CEUR-WS and indexed in Scopus and DBLP.',

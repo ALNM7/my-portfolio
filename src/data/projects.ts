@@ -14,12 +14,16 @@ export const projects: Project[] = [
     org: 'Health Technologies Laboratory, BUAP',
     period: 'Jan - Aug 2026',
     repo: 'https://github.com/ALNM7/mentalriskes-2026-llm-pipeline',
+    press: {
+      label: 'El Universal Puebla',
+      url: 'https://www.eluniversalpuebla.com.mx/educacion/estudiantes-buap-logran-primer-lugar-en-el-concurso-mentalriskes-2026/',
+    },
     contribution:
       'Built and operated the competition pipeline for the BUAP team; co-authored the resulting paper.',
     stack: ['Python', 'OpenAI API', 'Function calling', 'codecarbon', 'IberLEF server client'],
     metrics: [
-      { value: '6th', label: 'Task 1, overall' },
-      { value: '0.889', unit: 'MAE', label: 'Best R10 early detection' },
+      { value: '1st', label: 'Early detection, Task 1' },
+      { value: '6th', label: 'Task 1, general category' },
       { value: 'Lowest', label: 'Energy use in the field' },
     ],
     summary:
@@ -93,7 +97,8 @@ export const projects: Project[] = [
         caption: 'Official results: MentalRiskES 2026, Task 1',
         head: ['Result', 'Value'],
         rows: [
-          ['Overall placement', '6th'],
+          ['Early detection category', '1st place'],
+          ['General category', '6th'],
           ['Early detection (R10)', 'Best of all participating teams, MAE 0.889'],
           ['Energy consumption', 'Lowest of all participating teams'],
           ['Publication', 'Accepted at CEUR-WS (indexed in Scopus and DBLP)'],
