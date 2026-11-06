@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { AlertTriangle, Github, X } from 'lucide-react';
+import { AlertTriangle, Github, Newspaper, X } from 'lucide-react';
 import type { Project } from '../data/types';
 import { BarChart } from './data/BarChart';
 import { DataTable } from './data/DataTable';
@@ -53,6 +53,17 @@ export function CaseStudy({ project, onClose }: { project: Project | null; onClo
             <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-line bg-bg-raised px-5 py-3.5 sm:px-8">
               <span className="label-mono truncate">Case study</span>
               <div className="flex items-center gap-2">
+                {project.press && (
+                  <a
+                    href={project.press.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mono-ui link-rule inline-flex items-center gap-1.5 text-fg-dim"
+                  >
+                    <Newspaper className="size-3.5" />
+                    News: {project.press.label}
+                  </a>
+                )}
                 <a
                   href={project.repo}
                   target="_blank"

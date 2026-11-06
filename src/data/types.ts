@@ -47,6 +47,8 @@ export type Project = {
   org: string;
   period: string;
   repo: string;
+  /** Optional press coverage of the result. */
+  press?: { label: string; url: string };
   /** Set on team projects to state which part was mine. */
   contribution?: string;
   stack: string[];
