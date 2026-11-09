@@ -22,8 +22,8 @@ export const profile = {
       'transformation and on automating file handling that used to be manual.',
     'Earlier in 2026 I was a research assistant at the Health Technologies Laboratory at BUAP, where ' +
       'I built the team\'s submission pipeline for MentalRiskES at IberLEF, an early-detection task on ' +
-      'Spanish clinical text. We placed 6th overall and recorded the best early-detection score and the ' +
-      'lowest energy consumption of any participating team.',
+      'Spanish clinical text. We won 1st place in the early-detection category, placed 6th in the general category and ' +
+      'recorded the lowest energy consumption of any participating team.',
     'Before that I spent a semester at the University of New Mexico, splitting my time between the ' +
       'Anderson School of Management, where I built a distributed crawling pipeline for a Kickstarter ' +
       'research dataset, and the Center for Advanced Research Computing, where I ran HPL and HPCG ' +
@@ -63,10 +63,10 @@ export const headlineStats = [
     detail: '128 MPI ranks, Hopper cluster (UNM CARC)',
   },
   {
-    value: '6th',
-    unit: 'of the field',
+    value: '1st',
+    unit: 'early detection',
     label: 'MentalRiskES 2026',
-    detail: 'IberLEF Task 1, best early-detection score (R10)',
+    detail: 'IberLEF Task 1, 6th in the general category',
   },
   {
     value: '5.3×',
