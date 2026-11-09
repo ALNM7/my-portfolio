@@ -16,24 +16,17 @@ export const roles: Role[] = [
     period: 'Aug 2026 - Present',
     current: true,
     points: [
-      'Developed in PowerShell and VBScript an ETL pipeline that finds CBD files by content, converts ' +
-        'legacy .xls files to .xlsx and uploads them to AWS S3, recognizing multiple template versions in ' +
-        'English, Spanish and German.',
-      'Processed .xlsx files by reading the underlying XML directly, without opening Excel, and .xls files ' +
-        'through Excel COM, so scans never take over the user\u2019s Excel session.',
-      'Designed a two-flow architecture: one scans the user profile without touching the originals, the ' +
-        'other reviews files arriving through Power Automate (OneDrive for Business to SharePoint). ' +
-        'Implemented incremental state control with file fingerprints (modified date and size) to skip ' +
-        'processed files and version those that change.',
-      'Built a single-file VBS installer that detects OneDrive, creates the folder structure and registers ' +
-        'a silent daily task, working around GPO restrictions with PowerShell execution via stdin and ' +
-        'schtasks XML.',
-      'Built the SharePoint-to-AWS S3 upload stage using AWS CLI, working through the Zscaler corporate ' +
-        'proxy, with rotating logs and failure-only alerts.',
+      'Developed a script with a two-flow architecture (ETL) that identifies CBD files by content, ' +
+        'recognizing multiple template versions in English, Spanish and German, converts legacy .xls ' +
+        'files to .xlsx and uploads them to AWS S3.',
+      'Applied execution-time optimization strategies so the job handles large volumes of files in the ' +
+        'background without interrupting the user.',
+      'Implemented incremental state control with file fingerprints (modified date and size).',
+      'Built the S3 upload stage using AWS CLI, working through the Zscaler corporate proxy, with ' +
+        'rotating logs and failure-only alerts.',
       'Migrated authentication from a provisional technical user to IAM Roles Anywhere with a VW CA ' +
-        'certificate, coordinating issuance with the PKI team, and validated the upload in QAS and ' +
-        'production. Coordinated with the NTT DATA team (S3 consumers) and the AWS account administrator ' +
-        'on naming, prefixes and permissions.',
+        'certificate and validated the upload in QAS and production. Coordinated with the S3 consumers ' +
+        'and the AWS account administrator on naming, prefixes and permissions.',
     ],
     tags: ['PowerShell', 'VBScript', 'ETL', 'AWS S3', 'Power Automate', 'SharePoint'],
   },
@@ -59,10 +52,15 @@ export const roles: Role[] = [
     location: 'Albuquerque, NM, USA',
     period: 'Aug - Dec 2025',
     points: [
-      'Designed a distributed Python scraping pipeline that collected 150k+ Kickstarter campaign records, ' +
+      'Designed a distributed Python ETL pipeline that collected 150k+ Kickstarter campaign records, ' +
         'enabling large-scale analysis of customer behaviour.',
-      'Developed automated scrapers to extract structured and unstructured data from multiple online ' +
-        'sources behind JS rendering and bot protection.',
+      'Developed automated scrapers to extract structured and unstructured data from six JS-rendered ' +
+        'sub-pages per campaign, behind Cloudflare and bot protection.',
+      'Ran the crawl as independent workers over 250 rotating proxies, using static sharding (82 dataset ' +
+        'shards) instead of a message broker, so any worker could be restarted without affecting the others.',
+      'Treated Cloudflare challenges, CAPTCHAs and HTTP 429 limits as normal states (rotate proxy, ' +
+        'rebuild the browser profile, retry) and saved results after every row, so a crash lost at most ' +
+        'one record.',
       'Built preprocessing workflows to clean and merge datasets for analysis and machine-learning ' +
         'experiments.',
       'Collaborated with graduate researchers at the Anderson School of Management on customer behaviour ' +
