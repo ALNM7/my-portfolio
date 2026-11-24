@@ -82,7 +82,7 @@ export function Hero() {
           </div>
 
           <motion.div variants={enterUp} className="w-44 lg:w-80">
-            <div className="halftone overflow-hidden rounded-ink">
+            <div className="overflow-hidden rounded-ink">
               <img
                 src={profile.photo}
                 alt={profile.name}

@@ -17,8 +17,8 @@ export const profile = {
     'of rate limiting, and ship NLP pipelines that have to answer a scoring server on a deadline.',
 
   bio: [
-    'I am a final-year Information Technologies engineering student at BUAP, currently a software ' +
-      'engineering intern in the IT Solutions area at Volkswagen de México, where I work on data ' +
+    'I am a software engineer in Information Technologies, finishing my B.Eng. at BUAP in December 2026. ' +
+      'I am currently a software engineering intern in the IT Solutions area at Volkswagen de México, where I work on data ' +
       'transformation and on automating file handling that used to be manual.',
     'Earlier in 2026 I was a research assistant at the Health Technologies Laboratory at BUAP, where ' +
       'I built the team\'s submission pipeline for MentalRiskES at IberLEF, an early-detection task on ' +
